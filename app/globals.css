@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #192C2F;
+  --primary-dark: #0f2525;
+  --primary-light: #254545;
+  --accent: #c4ff61;
+  --accent-dark: #a8e04d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--primary);
+  color: white;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .wave-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='120' viewBox='0 0 1440 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60C240 20 480 100 720 60C960 20 1200 100 1440 60V120H0V60Z' fill='white' fill-opacity='0.05'/%3E%3Cpath d='M0 80C240 40 480 120 720 80C960 40 1200 120 1440 80V120H0V80Z' fill='white' fill-opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+  }
+
+  .scrolling-text {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(196, 255, 97, 0.2);
+  }
+
+  .btn-primary {
+    @apply bg-primary-light text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-primary hover:shadow-lg flex items-center gap-3;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-primary px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-accent-dark hover:shadow-lg flex items-center gap-3;
+  }
+
+  .input-field {
+    @apply w-full bg-transparent border-2 border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors;
+  }
+
+  .product-card {
+    @apply bg-primary-light rounded-3xl p-8 hover-lift cursor-pointer overflow-hidden relative;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Timeline styles */
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}

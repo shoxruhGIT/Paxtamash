@@ -1,0 +1,24 @@
+{
+  "home": {
+    "hero_subtitle": "Yuqori sifat - sizning biznesingiz muvaffaqiyati.",
+    "btn": "Mahsulotlar",
+    "hero": "Kattaqo’rg’on paxtamash",
+    "akkum": "Hozirgi akkumulyator ishlab chiqarish texnologiyalari beqaror.",
+    "about": "Batafsil",
+    "sale":"10% chegirmani qo’lga kiriting!",
+    "buy":"Buyurtma qilish",
+    "abouts":"Hammasini ko'rish",
+    "call":"Bog'lanish",
+    "name":"Ismingiz",
+    "phone":"Sizning telefon raqamingiz",
+    "sms":"Xabar yozing",
+    "add":"Yuborish"
+  },
+  "about": {
+    "title": "Konveyer texnologiyasidagi innovatsiyalarning tasdiqlanagan tajribasi",
+    "old":"Avval",
+    "new":"Hozir",
+    "text":"Nega aynan bizni tanlashadi?",
+     "text-new":"Bizning filiallarimiz"
+  }
+}
