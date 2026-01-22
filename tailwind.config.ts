@@ -23,6 +23,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         display: ["var(--font-display)"],
+        manrope: ["var(--font-manrope)"],
+        inter: ["var(--font-inter)"],
       },
     },
   },

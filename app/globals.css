@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
-  --primary: #192C2F;
+  --primary: #192c2f;
   --primary-dark: #0f2525;
   --primary-light: #254545;
   --accent: #c4ff61;
@@ -17,7 +19,6 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--primary);
   color: white;
   overflow-x: hidden;
@@ -59,7 +60,9 @@ body {
   }
 
   .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .hover-lift:hover {
@@ -101,7 +104,7 @@ body {
 }
 
 .timeline-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -111,7 +114,7 @@ body {
 }
 
 .timeline-item::after {
-  content: '';
+  content: "";
   position: absolute;
   left: -4px;
   top: 0;

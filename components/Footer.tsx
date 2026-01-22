@@ -13,16 +13,28 @@ export default function Footer() {
               © 2025 «Kattaqo'rg'on paxtamash». Все права защищены.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Phone size={20} />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-accent transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-accent transition-colors"
+              >
                 <Send size={20} />
               </a>
             </div>
@@ -33,22 +45,34 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Быстрые ссылки</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-white/70 hover:text-accent transition-colors">
+                <Link
+                  href="/"
+                  className="text-white/70 hover:text-accent transition-colors"
+                >
                   Главная
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-white/70 hover:text-accent transition-colors">
+                <Link
+                  href="/about"
+                  className="text-white/70 hover:text-accent transition-colors"
+                >
                   О нас
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="text-white/70 hover:text-accent transition-colors">
+                <Link
+                  href="/products"
+                  className="text-white/70 hover:text-accent transition-colors"
+                >
                   Продукция
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white/70 hover:text-accent transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-white/70 hover:text-accent transition-colors"
+                >
                   Контакты
                 </Link>
               </li>
@@ -80,7 +104,10 @@ export default function Footer() {
 
         {/* Bottom text */}
         <div className="mt-8 text-center">
-          <Link href="/privacy" className="text-white/50 hover:text-accent text-sm transition-colors">
+          <Link
+            href="/privacy"
+            className="text-white/50 hover:text-accent text-sm transition-colors"
+          >
             Созданные сайтов
           </Link>
         </div>

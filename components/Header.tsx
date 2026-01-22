@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-white/10">
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container max-w-[1295px] mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
@@ -31,12 +31,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center gap-[60px]">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-accent transition-colors font-medium"
+                className="text-white text-lg hover:text-accent transition-colors font-normal"
               >
                 {item.name}
               </Link>
@@ -44,9 +44,9 @@ export default function Header() {
           </div>
 
           {/* Right side actions */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center gap-[46px]">
             <button className="text-white hover:text-accent transition-colors">
-              <Search size={20} />
+              <Search size={23} />
             </button>
 
             {/* Language selector */}
@@ -55,7 +55,7 @@ export default function Header() {
                 <img
                     src="https://flagcdn.com/w40/uz.png"
                     alt="Uzbek"
-                  className="w-6 h-4 object-cover rounded"
+                  className="w-9 h-[22px] object-cover"
                 />
                 <ChevronDown size={16} /> 
               </button>

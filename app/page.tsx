@@ -1,20 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Phone, User, Mail } from "lucide-react";
+import { ArrowRight, Phone, User, Mail, MoveRight } from "lucide-react";
 import WaveDecoration from "@/components/WaveDecoration";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { useHomeData } from "./features";
 
 export default function Home() {
   const { t } = useTranslation();
+
+  const { data: homeData, isLoading } = useHomeData();
 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
   });
+
+  console.log(homeData);
+  
 
   const products = [
     {
@@ -48,9 +54,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="relative overflow-x-hidden">
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-[#192C2F] overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-8 py-12 md:py-0 relative z-10">
+        <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-0 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-white space-y-6 md:space-y-8">
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up">
@@ -60,24 +66,22 @@ export default function Home() {
               <div className="pt-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-3 bg-white text-black px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up"
+                  className="inline-flex items-center justify-center gap-5 bg-white text-2xl text-black pl-[32px] pr-3 py-[9.25px] rounded-full font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up font-manrope"
                   style={{ animationDelay: "0.2s" }}
                 >
                   {t("home.btn")}
-                  <ArrowRight size={24} className="text-black" />
+                  <div className="w-[58px] h-[58px] bg-[#BDFF69] rounded-full flex items-center justify-center">
+                    <img src="/right.png" alt="" />
+                  </div>
                 </Link>
               </div>
             </div>
 
-            <div className="relative mt-10 md:mt-0">
-              <div className="rounded-2xl ">
-                <img
-                  src="/image-Photoroom (4)_upscayl_5x_realesrgan-x4plus 1.png"
-                  alt="Textile machinery equipment"
-                  className="w-full h-auto object-cover max-h-[450px] md:max-h-[550px] lg:max-h-[680px]"
-                />
-              </div>
-            </div>
+            <img
+              src="/image-Photoroom (4)_upscayl_5x_realesrgan-x4plus 1.png"
+              alt="Textile machinery equipment"
+              className="absolute right-0 -top-48"
+            />
           </div>
         </div>
 
@@ -193,7 +197,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-               {t("home.sale")}
+                {t("home.sale")}
               </h2>
               <p className="text-primary/70 text-lg mb-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -246,13 +250,13 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
+            {homeData?.product?.map((product) => (
               <ProductCard
                 key={product.id}
-                id={product.id}
-                name={product.name}
-                description={product.description}
-                imageColor={product.color}
+                id={String(product?.id)}
+                name={product?.title ?? ""}
+                description={product?.short_description ?? ""}
+                imageColor={(product?.image as "black" | "lime" | "white") ?? "black"}
               />
             ))}
           </div>
@@ -261,7 +265,8 @@ export default function Home() {
               href="/products"
               className="text-accent hover:text-accent-dark transition-colors font-semibold flex items-center justify-center gap-2"
             >
-            {t("home.abouts")}<ArrowRight size={20} />
+              {t("home.abouts")}
+              <ArrowRight size={20} />
             </Link>
           </div>
         </div>
@@ -285,7 +290,9 @@ export default function Home() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6">{t("home.call")}</h2>
+              <h2 className="text-3xl font-bold text-white mb-6">
+                {t("home.call")}
+              </h2>
               <form className="space-y-4">
                 <input
                   type="text"
