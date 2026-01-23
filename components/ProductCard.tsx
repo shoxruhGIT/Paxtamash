@@ -1,55 +1,103 @@
-import Link from "next/link";
+import React from "react";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   id: string;
   name: string;
   description: string;
-  imageColor: "black" | "lime" | "white";
+  imageColor: string;
+  index: number; // Add index to determine variant automatically
 }
 
-export default function ProductCard({ id, name, description, imageColor }: ProductCardProps) {
-  const bgColors = {
-    black: "bg-black",
-    lime: "bg-accent",
-    white: "bg-white/10",
+const ProductCard = ({
+  id,
+  name,
+  description,
+  imageColor,
+  index,
+}: ProductCardProps) => {
+  // Automatically determine variant based on index: black, lime, white, lime
+  const variantMap: Array<"black" | "lime" | "white" | "darkTeal"> = [
+    "black",
+    "lime",
+    "white",
+    "lime",
+    "darkTeal",
+  ];
+
+  const navigate = useRouter();
+
+  const variant = variantMap[index % 6];
+
+  const variants = {
+    black: {
+      bg: "bg-black",
+      text: "text-white",
+      button: "bg-white",
+      buttonText: "text-black",
+      iconBg: "bg-[#BDFF69]",
+    },
+    lime: {
+      bg: "bg-[#BDFF69]",
+      text: "text-[#192C2F]",
+      button: "bg-white",
+      buttonText: "text-[#000000]",
+      iconBg: "bg-[#BDFF69]",
+    },
+    white: {
+      bg: "bg-white",
+      text: "text-[#192C2F]",
+      button: "bg-[#1a3a3a]",
+      buttonText: "text-white",
+      iconBg: "bg-[#BDFF69]",
+    },
+    darkTeal: {
+      bg: "bg-[#192C2F]",
+      text: "text-white",
+      button: "bg-[#BDFF69]",
+      buttonText: "text-[#192C2F]",
+      iconBg: "bg-white",
+    },
   };
 
-  const textColors = {
-    black: "text-white",
-    lime: "text-primary",
-    white: "text-white",
-  };
+  const style = variants[variant];
 
   return (
-    <div className={`${bgColors[imageColor]} rounded-3xl p-8 hover-lift group cursor-pointer`}>
-      <h3 className={`text-2xl font-bold mb-4 ${textColors[imageColor]}`}>{name}</h3>
-      
-      {/* Machine illustration placeholder */}
-      <div className="aspect-video mb-6 flex items-center justify-center">
-        <div className="w-full h-48 flex items-center justify-center">
-          <svg width="200" height="120" viewBox="0 0 200 120" className="opacity-80">
-            {/* Simplified machine illustration */}
-            <rect x="20" y="60" width="40" height="30" fill={imageColor === "lime" ? "#1a3e3e" : "#4a9eff"} rx="4"/>
-            <rect x="70" y="40" width="60" height="50" fill={imageColor === "lime" ? "#1a3e3e" : "#4a9eff"} rx="4"/>
-            <rect x="140" y="20" width="40" height="70" fill={imageColor === "lime" ? "#1a3e3e" : "#4a9eff"} rx="4"/>
-            <rect x="80" y="50" width="30" height="20" fill={imageColor === "lime" ? "#ff4444" : "#ff6b6b"}/>
-            <line x1="130" y1="30" x2="180" y2="10" stroke={imageColor === "lime" ? "#1a3e3e" : "#4a9eff"} strokeWidth="3"/>
-            <circle cx="30" cy="95" r="6" fill={imageColor === "lime" ? "#ff4444" : "#ff6b6b"}/>
-            <circle cx="50" cy="95" r="6" fill={imageColor === "lime" ? "#ff4444" : "#ff6b6b"}/>
-          </svg>
-        </div>
+    <div
+      className={`${style?.bg}  rounded-[24px] p-6 flex flex-col h-[550px] transition-transform hover:scale-[1.02]`}
+    >
+      {/* Title */}
+      <h3 className={`${style?.text} text-xl font-bold mb-6`}>{name}</h3>
+
+      <div className="relative top-10 flex-1 flex items-center justify-center">
+        <img
+          src={imageColor}
+          alt={name}
+          className="absolute w-full h-auto object-contain"
+          style={{ maxHeight: "400px" }}
+        />
       </div>
 
-      <p className={`${textColors[imageColor]} mb-6 opacity-80`}>{description}</p>
+      {/* Description */}
+      <p className={`${style?.text} text-sm mb-6 leading-relaxed opacity-80`}>
+        {description}
+      </p>
 
-      <Link
-        href={`/products/${id}`}
-        className={`${imageColor === "lime" ? "bg-primary hover:bg-primary-dark" : "bg-accent hover:bg-accent-dark"} ${imageColor === "lime" ? "text-white" : "text-primary"} px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 transition-all group-hover:gap-4`}
+      {/* Button */}
+      <button
+        onClick={() => navigate.push(`/products/${id}`)}
+        className={`${style?.button} ${style?.buttonText} rounded-full pl-[35px] pr-[11px] py-[9.75px] font-medium text-sm flex items-center justify-between group w-full transition-all`}
       >
-        Xususiyatlarni ko'rish
-        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-      </Link>
+        <span className="text-[17px]">Xususiyatlarni ko'rish</span>
+        <div
+          className={`${style?.iconBg} rounded-full w-14 h-14 flex items-center justify-center ml-2 transition-transform group-hover:translate-x-1`}
+        >
+          <img src="/right.png" alt="" />
+        </div>
+      </button>
     </div>
   );
-}
+};
+
+export default ProductCard;

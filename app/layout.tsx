@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import I18nProvider from "./I18nProvider";
 import { Inter, Manrope } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
   title: "Kattaqo'rg'on Paxtamash - Textile Machinery",
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </I18nProvider>
+        <Toaster />
       </body>
     </html>
   );

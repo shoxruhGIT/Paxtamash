@@ -1,24 +1,85 @@
 {
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "products": "Mahsulotlar",
+    "contact": "Aloqa"
+  },
   "home": {
     "hero_subtitle": "Yuqori sifat - sizning biznesingiz muvaffaqiyati.",
     "btn": "Mahsulotlar",
-    "hero": "Kattaqo’rg’on paxtamash",
+    "hero": "Kattaqo'rg'on paxtamash",
     "akkum": "Hozirgi akkumulyator ishlab chiqarish texnologiyalari beqaror.",
     "about": "Batafsil",
-    "sale":"10% chegirmani qo’lga kiriting!",
-    "buy":"Buyurtma qilish",
-    "abouts":"Hammasini ko'rish",
-    "call":"Bog'lanish",
-    "name":"Ismingiz",
-    "phone":"Sizning telefon raqamingiz",
-    "sms":"Xabar yozing",
-    "add":"Yuborish"
+    "sale": "10% chegirmani qo'lga kiriting!",
+    "sale_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+    "buy": "Buyurtma qilish",
+    "abouts": "Hammasini ko'rish",
+    "call": "Bog'lanish",
+    "name": "Ismingiz",
+    "phone": "Sizning telefon raqamingiz",
+    "sms": "Xabar yozing",
+    "add": "Yuborish",
+    "your_name": "Ismingiz",
+    "how_to_call": "Ismingizni kiriting",
+    "your_number": "Telefon raqamingiz",
+    "your_phone": "Telefon raqamingizni kiriting",
+    "your_email": "E-mail manzilingiz",
+    "email_placeholder": "E-mail manzilingizni kiriting",
+    "get_consultation": "Konsultatsiya olish"
   },
   "about": {
     "title": "Konveyer texnologiyasidagi innovatsiyalarning tasdiqlanagan tajribasi",
-    "old":"Avval",
-    "new":"Hozir",
-    "text":"Nega aynan bizni tanlashadi?",
-     "text-new":"Bizning filiallarimiz"
+    "old": "Avval",
+    "new": "Hozir",
+    "text": "Nega aynan bizni tanlashadi?",
+    "text-new": "Bizning filiallarimiz",
+    "team_title": "Bizning mutaxassislarimiz",
+    "stats": {
+      "satisfied_clients": "Mamnun mijozlar",
+      "completed_projects": "Bajarilgan loyihalar",
+      "specialists": "Mutaxassislar",
+      "foreign_partners": "Xorijiy hamkorlar"
+    },
+    "features": {
+      "affordable_price": "Qulay narxlar",
+      "quality_product": "Sifatli mahsulot",
+      "fast_delivery": "Tez yetkazib berish",
+      "high_tech": "Yuqori texnologiyalar"
+    }
+  },
+  "products": {
+    "title": "Mahsulotlar",
+    "hero_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+    "features_title": "Hozirgi akkumulyator ishlab chiqarish texnologiyalari beqaror.",
+    "back": "Orqaga",
+    "specifications": "Xususiyatlari:",
+    "description": "Tavsifi:",
+    "related_products": "O'xshash mahsulotlar:"
+  },
+  "contact": {
+    "title": "Mahsulotlarimiz haqida ko'proq ma'lumot olmoqchimisiz?",
+    "consultation": "Konsultatsiyaga yozilish",
+    "online_consultation": "Onlayn konsultatsiya",
+    "write_us": "Bizga yozing",
+    "your_name": "Ismingiz",
+    "your_phone": "Telefon raqamingiz",
+    "your_email": "E-mail manzilingiz",
+    "write_message": "Xabar yozing",
+    "submit": "Yuborish"
+  },
+  "footer": {
+    "rights": "© 2025 «Kattaqo'rg'on paxtamash». Barcha huquqlar himoyalangan.",
+    "quick_links": "Tezkor havolalar",
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "products": "Mahsulotlar",
+    "contact": "Aloqa",
+    "contacts": "Kontaktlar",
+    "created_by": "Sayt yaratuvchisi"
+  },
+  "toast": {
+    "success": "Arizangiz muvaffaqiyatli yuborildi!",
+    "error": "Xatolik yuz berdi. Keyinroq urinib ko'ring."
   }
 }

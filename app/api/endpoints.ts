@@ -4,6 +4,6 @@ export const endpoints = {
     home: "/home",
     productById: (id: number) => `/products/${id}`,
     staffs: "/staffs",
-    contact: "/contact",
+    contact: "/contact/",
   },
 };

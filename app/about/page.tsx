@@ -1,87 +1,139 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import WaveDecoration from "@/components/WaveDecoration";
-import { Check } from "lucide-react";
-import { t } from "i18next";
+import { Check, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { useStaffs } from "../features";
 
 export default function AboutPage() {
-  const [activeYear, setActiveYear] = useState(2017);
+  const { t } = useTranslation();
+
+  const { data: staffs, isLoading } = useStaffs();
 
   const timeline = [
     { year: 2017, active: true },
     { year: 2019, active: false },
     { year: 2021, active: false },
+    { year: 2023, active: false },
+    { year: 2025, active: false },
   ];
 
   const stats = [
-    { value: "90%", label: "Manmun mijozlar" },
-    { value: "+47", label: "Bajarilgan obyektlar" },
-    { value: "+39", label: "Mutaxassislar" },
-    { value: "+35", label: "Xorijiy hamkorlar" },
+    { value: "90%", labelKey: "about.stats.satisfied_clients" },
+    { value: "+47", labelKey: "about.stats.completed_projects" },
+    { value: "+39", labelKey: "about.stats.specialists" },
+    { value: "+35", labelKey: "about.stats.foreign_partners" },
   ];
 
   const features = [
-    "Rivojlantirilgan narx",
-    "Sifatli mahsulot",
-    "Tez fax muximdira",
-    "Yuqori texnologiyalar yechizdar",
+    "about.features.affordable_price",
+    "about.features.quality_product",
+    "about.features.fast_delivery",
+    "about.features.high_tech",
   ];
 
   const team = [
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
     {
       name: "Aleksandr Petro",
-      role: "Bosh yrich direktlar",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+      role: "Bosh ijrochi direktor",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
     },
   ];
 
-  return (
-    <div className="overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center">
-        <div className="absolute inset-0 overflow-hidden opacity-30">
-          <div className="absolute right-0 w-1/2 h-full">
-            <svg viewBox="0 0 600 400" className="w-full h-full">
-              <rect x="100" y="150" width="120" height="150" fill="#4a9eff" rx="8"/>
-              <rect x="240" y="100" width="180" height="200" fill="#4a9eff" rx="8"/>
-              <rect x="440" y="50" width="120" height="250" fill="#4a9eff" rx="8"/>
-            </svg>
-          </div>
-        </div>
+  const [activeYear, setActiveYear] = useState(2017);
 
-        <div className="container mx-auto px-6 relative z-10 mt-[70px]">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-accent mb-6">
+  const tripleTimeline = [...timeline, ...timeline, ...timeline];
+  const ORIGINAL_LENGTH = timeline.length;
+
+  const [activeIndex, setActiveIndex] = useState(ORIGINAL_LENGTH);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const ITEM_WIDTH = 450; // Yil + Masofa (taxminan, buni o'zingiz moslang)
+
+  const handleYearClick = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  useEffect(() => {
+    if (activeIndex >= ORIGINAL_LENGTH * 2) {
+      setTimeout(() => {
+        setIsTransitioning(false); // Animatsiyani vaqtincha o'chirish
+        setActiveIndex(activeIndex - ORIGINAL_LENGTH);
+      }, 700); // duration-700 bilan bir xil bo'lishi kerak
+    } else if (activeIndex < ORIGINAL_LENGTH) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setActiveIndex(activeIndex + ORIGINAL_LENGTH);
+      }, 700);
+    }
+  }, [activeIndex]);
+
+  // Animatsiyani qayta yoqish
+  useEffect(() => {
+    if (!isTransitioning) {
+      // Brauzer "re-render" qilib olishi uchun qisqa tanaffus
+      const timeout = setTimeout(() => setIsTransitioning(true), 10);
+      return () => clearTimeout(timeout);
+    }
+  }, [isTransitioning]);
+
+  return (
+    <div className="w-full overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="w-full relative h-screen flex items-center bg-[url('/about_banner.png')] bg-cover bg-center mt-[60px]">
+        {/* Qora overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        <div className="container max-w-[1295px] mx-auto px-6 relative z-10">
+          <div className="">
+            <h1 className="text-5xl font-medium text-accent mb-6 leading-[2]">
               {t("home.akkum")}
             </h1>
-            <p className="text-white/80 text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada. Integer et arcu magna. Nulla posuere suscipit tellus. Ut libero nisi, accumsan a tempor id, rutrum nec justo. Mauris quis vulputate risus, eget finibus nulla. Aenean sit amet purus feugiat, congue lectus sed, fringilla velit. Nulla interdum augue sapien. Sed mollis ante vitae facilisis cursus. Integer nec sagittis ipsum. Donec sit amet libero mollis, mollis tellus ut, condimentum orci. Praesent mattis varius pharetra. Nulla ante diam, sodales vitae purus sit amet, eleifend sagittis magna.
+            <p className="max-w-[755px] text-white text-[22px] leading-[2]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              posuere tellus ut tristique malesuada. Integer et arcu magna.
+              Nulla posuere suscipit tellus. Ut libero nisi, accumsan a tempor
+              id, rutrum nec justo. Mauris quis vulputate risus, eget finibus
+              nulla. Aenean sit amet purus feugiat, congue lectus sed, fringilla
+              velit. Nulla interdum augue sapien. Sed mollis ante vitae
+              facilisis cursus. Integer nec sagittis ipsum. Donec sit amet
+              libero mollis, mollis tellus ut, condimentum orci. Praesent mattis
+              varius pharetra. Nulla ante diam, sodales vitae purus sit amet,
+              eleifend sagittis magna.
             </p>
           </div>
         </div>
@@ -89,66 +141,92 @@ export default function AboutPage() {
 
       {/* Timeline Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-12">
+        <div className="container max-w-[1295px] mx-auto px-6">
+          <h2 className="text-5xl font-medium leading-[2] mb-12">
             {t("about.title")}
           </h2>
 
           <div className="relative">
-            <div className="flex items-center justify-between mb-8">
-              {timeline.map((item) => (
-                <button
-                  key={item.year}
-                  onClick={() => setActiveYear(item.year)}
-                  className={`text-6xl font-bold transition-all ${
-                    activeYear === item.year
-                      ? "text-white scale-110"
-                      : "text-white/30"
-                  }`}
-                >
-                  {item.year}
-                </button>
-              ))}
-            </div>
+            <div className="relative w-full max-w-[1295px] h-64 overflow-hidden">
+              <div
+                className={`flex items-center ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
+                style={{
+                  transform: `translateX(calc(50% - ${activeIndex * ITEM_WIDTH + ITEM_WIDTH * 1.35}px))`,
+                }}
+              >
+                {tripleTimeline.map((item, index) => {
+                  const isActive = index === activeIndex;
 
-            <div className="h-1 bg-white/20 rounded-full mb-4">
-              <div className="h-full bg-accent rounded-full w-1/3 transition-all"></div>
-            </div>
+                  return (
+                    <div
+                      key={`${item.year}-${index}`}
+                      className="flex items-center shrink-0"
+                      style={{ width: `${ITEM_WIDTH}px` }}
+                    >
+                      <button
+                        onClick={() => {
+                          handleYearClick(index);
+                          setActiveYear(item.year);
+                        }}
+                        className={`relative text-[120px] font-medium transition-all duration-300 ${
+                          isActive
+                            ? "text-[#1a2e2e] scale-110"
+                            : "text-transparent [-webkit-text-stroke:1px_#475569] opacity-30 hover:opacity-50"
+                        }`}
+                      >
+                        {item.year}
+                        {isActive && (
+                          <div className="absolute top-44 left-0 w-full z-50">
+                            <p className="text-[14px] leading-tight text-black font-normal normal-case tracking-normal text-left mt-2 max-w-[300px]">
+                              "Jami 2 million$ lik investitsiya bilan bir qator
+                              ilmiy-tadqiqot va ishlanmalar hamkorliklari
+                              o'rnatildi."
+                            </p>
+                          </div>
+                        )}
+                      </button>
 
-            <div className="flex justify-between text-white/50 text-sm">
-              <span>{t("about.old")}</span>
-              <span>{t("about.new")}</span>
-            </div>
-
-            {activeYear === 2017 && (
-              <div className="mt-8 p-6 bg-primary-light/50 rounded-2xl">
-                <p className="text-white/80">
-                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime reiciendis ducimus in cumque cumque recusandae.
-                </p>
+                      {/* Nuqta doim chiqadi, chunki bu cheksiz ro'yxat */}
+                      <div
+                        className={`w-3 h-3 rounded-full mx-auto transition-colors duration-300 ${
+                          isActive ||
+                          (tripleTimeline[index + 1] &&
+                            index + 1 === activeIndex)
+                            ? "bg-[#1a2e2e]"
+                            : "border border-[#475569]"
+                        }`}
+                      />
+                    </div>
+                  );
+                })}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-primary-light/30">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-[#192C2F]">
+        <div className="container max-w-[1295px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-white mb-6">
-               {t("about.text")}
+              <h2 className="text-4xl font-medium text-white mb-6">
+                {t("about.text")}
               </h2>
-              <p className="text-white/80 mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada. Integer et arcu magna. Nulla posuere suscipit tellus. Ut libero nisi, accumsan a tempor id, rutrum nec justo. Mauris quis vulputate risus, eget finibus nulla.
+              <p className="text-white/80 mb-8 leading-[2] text-lg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                posuere tellus ut tristique malesuada. Integer et arcu magna.
+                Nulla posuere suscipit tellus. Ut libero nisi, accumsan a tempor
+                id, rutrum nec justo. Mauris quis vulputate risus, eget finibus
+                nulla.
               </p>
               <ul className="space-y-4">
-                {features.map((feature, index) => (
+                {features.map((featureKey, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
-                      <Check size={16} className="text-primary" />
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <img src="/tick_icon.png" alt="" />
                     </div>
-                    <span className="text-white">{feature}</span>
+                    <span className="text-white text-lg">{t(featureKey)}</span>
                   </li>
                 ))}
               </ul>
@@ -166,15 +244,21 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20">
+      <section className="py-20 bg-[#192C2F]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-accent mb-2">
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center gap-3"
+              >
+                <div className="text-7xl font-bold text-white">
                   {stat.value}
                 </div>
-                <div className="text-white/70">{stat.label}</div>
+                <div className="w-[26px] h-[5px] bg-white" />
+                <div className="text-white text-2xl font-bold">
+                  {t(stat.labelKey)}
+                </div>
               </div>
             ))}
           </div>
@@ -184,9 +268,8 @@ export default function AboutPage() {
       {/* Globe Section */}
       <section className="py-20 bg-primary-dark">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-12">
-            {t("about.text-new")} </h2>
-          
+          <h2 className="text-3xl font-bold mb-12">{t("about.text-new")}</h2>
+
           <div className="relative w-full max-w-md mx-auto h-96">
             {/* Globe illustration */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -201,13 +284,31 @@ export default function AboutPage() {
                     opacity="0.5"
                   />
                   <circle cx="100" cy="85" r="4" fill="#c4ff61" />
-                  <text x="100" y="110" textAnchor="middle" fill="white" fontSize="10">
+                  <text
+                    x="100"
+                    y="110"
+                    textAnchor="middle"
+                    fill="white"
+                    fontSize="10"
+                  >
                     UZBEKISTAN
                   </text>
-                  <text x="100" y="135" textAnchor="middle" fill="#c4ff61" fontSize="12">
+                  <text
+                    x="100"
+                    y="135"
+                    textAnchor="middle"
+                    fill="#c4ff61"
+                    fontSize="12"
+                  >
                     SAMARQAND
                   </text>
-                  <text x="100" y="150" textAnchor="middle" fill="#c4ff61" fontSize="12">
+                  <text
+                    x="100"
+                    y="150"
+                    textAnchor="middle"
+                    fill="#c4ff61"
+                    fontSize="12"
+                  >
                     NAVOI
                   </text>
                 </svg>
@@ -219,30 +320,59 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">
-            Bizning mutaxassislarimiz
+        <div className="container max-w-[1295px] mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            {t("about.team_title")}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-10 w-10 animate-spin text-[#192C2F]" />
+            </div>
+          ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+            {staffs?.results?.map((member, index) => (
               <div
                 key={index}
-                className="bg-primary-dark rounded-3xl p-6 hover-lift"
+                className="bg-primary-dark rounded-3xl hover-lift overflow-hidden py-6"
               >
-                <div className="w-full h-48 bg-white/10 rounded-2xl mb-4 overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400`}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
+                {/* Name Section */}
+                <div className="p-6 pb-4">
+                  <h3 className="text-accent text-3xl font-medium">
+                    {member.first_name}
+                  </h3>
                 </div>
-                <h3 className="text-accent text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-white/60 mb-3">{member.role}</p>
-                <p className="text-white/80 text-sm">{member.description}</p>
+
+                {/* Divider */}
+                <div className="w-full h-[2px] bg-white/20" />
+
+                {/* Image Section with light background */}
+                <div className=" p-6">
+                  <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                    <img
+                      src={member?.image || "/default_avatar.png"}
+                      alt={member?.first_name || ""}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="w-full h-[2px] bg-white/20" />
+
+                {/* Role and Description Section */}
+                <div className="p-6 pt-4">
+                  <p className="text-accent text-xl font-normal mb-3">
+                    {member.role}
+                  </p>
+                  <p className="text-white text-sm leading-[2]">
+                    {member.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
     </div>

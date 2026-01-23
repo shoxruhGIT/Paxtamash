@@ -7,19 +7,19 @@ import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("ru");
 
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
 
   const navigation = [
-    { name: "Bosh sahifa", href: "/" },
-    { name: "Biz haqimizda", href: "/about" },
-    { name: "Mahsulotlar", href: "/products" },
-    { name: "Aloqa", href: "/contact" },
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.products"), href: "/products" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-white/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#223235] backdrop-blur-sm border-b border-white/10">
       <nav className="container max-w-[1295px] mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -53,14 +53,14 @@ export default function Header() {
             <div className="relative group">
               <button className="flex items-center space-x-2 text-white hover:text-accent transition-colors">
                 <img
-                    src="https://flagcdn.com/w40/uz.png"
-                    alt="Uzbek"
+                  src={currentLang === "ru" ? "https://flagcdn.com/w40/ru.png" : "https://flagcdn.com/w40/uz.png"}
+                  alt={currentLang === "ru" ? "Russian" : "Uzbek"}
                   className="w-9 h-[22px] object-cover"
                 />
-                <ChevronDown size={16} /> 
+                <ChevronDown size={16} />
               </button>
               <div className="absolute right-0 mt-2 w-32 bg-primary-light rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <button  onClick={() => i18n.changeLanguage("ru")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-t-lg flex items-center space-x-2">
+                <button onClick={() => i18n.changeLanguage("ru")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-t-lg flex items-center space-x-2">
                   <img
                     src="https://flagcdn.com/w40/ru.png"
                     alt="Russian"
@@ -68,7 +68,7 @@ export default function Header() {
                   />
                   <span>Русский</span>
                 </button>
-                <button  onClick={() => i18n.changeLanguage("uz")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
+                <button onClick={() => i18n.changeLanguage("uz")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
                   <img
                     src="https://flagcdn.com/w40/uz.png"
                     alt="Uzbek"
@@ -102,6 +102,23 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            {/* Mobile Language Selector */}
+            <div className="flex items-center gap-4 pt-4 border-t border-white/10 mt-4">
+              <button
+                onClick={() => i18n.changeLanguage("uz")}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "uz" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
+              >
+                <img src="https://flagcdn.com/w40/uz.png" alt="Uzbek" className="w-6 h-4" />
+                <span>O'zbek</span>
+              </button>
+              <button
+                onClick={() => i18n.changeLanguage("ru")}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "ru" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
+              >
+                <img src="https://flagcdn.com/w40/ru.png" alt="Russian" className="w-6 h-4" />
+                <span>Русский</span>
+              </button>
+            </div>
           </div>
         )}
       </nav>

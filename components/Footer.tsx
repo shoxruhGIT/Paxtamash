@@ -1,16 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import { Instagram, Facebook, Send, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
-    <footer className="bg-primary-dark border-t border-white/10 mt-20">
-      <div className="container mx-auto px-6 py-12">
+    <footer className="bg-primary-dark border-t border-white/10">
+      <div className="container max-w-[1295px] mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Logo and description */}
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">Logo</h3>
             <p className="text-white/70 mb-4">
-              © 2025 «Kattaqo'rg'on paxtamash». Все права защищены.
+              {t("footer.rights")}
             </p>
             <div className="flex space-x-4">
               <a
@@ -42,14 +47,14 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Быстрые ссылки</h4>
+            <h4 className="text-white font-semibold mb-4">{t("footer.quick_links")}</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  Главная
+                  {t("footer.home")}
                 </Link>
               </li>
               <li>
@@ -57,7 +62,7 @@ export default function Footer() {
                   href="/about"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  О нас
+                  {t("footer.about")}
                 </Link>
               </li>
               <li>
@@ -65,7 +70,7 @@ export default function Footer() {
                   href="/products"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  Продукция
+                  {t("footer.products")}
                 </Link>
               </li>
               <li>
@@ -73,7 +78,7 @@ export default function Footer() {
                   href="/contact"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  Контакты
+                  {t("footer.contact")}
                 </Link>
               </li>
             </ul>
@@ -81,7 +86,7 @@ export default function Footer() {
 
           {/* Contact info */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Контакты</h4>
+            <h4 className="text-white font-semibold mb-4">{t("footer.contacts")}</h4>
             <ul className="space-y-2 text-white/70">
               <li>+998(90)123-45-67</li>
               <li>@paxtamashkattaqo'rg'on</li>
@@ -108,7 +113,7 @@ export default function Footer() {
             href="/privacy"
             className="text-white/50 hover:text-accent text-sm transition-colors"
           >
-            Созданные сайтов
+            {t("footer.created_by")}
           </Link>
         </div>
       </div>
