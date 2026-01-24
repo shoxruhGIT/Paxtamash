@@ -23,40 +23,40 @@ export default function ProductDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#192C2F]">
+      <div className="min-h-screen flex items-center justify-center bg-primary">
         <Loader2 className="h-10 w-10 animate-spin text-white" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen pt-20 md:pt-24 pb-12">
       {/* Back button */}
-      <div className="container mx-auto px-6 mb-8">
+      <div className="container mx-auto px-6 mb-6 md:mb-8">
         <Link
           href="/products"
           className="inline-flex items-center gap-2 text-white hover:text-accent transition-colors"
         >
-          <ArrowLeft size={20} />
-          <span>{t("products.back")}</span>
+          <ArrowLeft size={18} className="md:w-5 md:h-5" />
+          <span className="text-sm md:text-base">{t("products.back")}</span>
         </Link>
       </div>
 
       {/* Product Header */}
-      <section className="container mx-auto px-6 mb-12">
-        <h1 className="text-5xl font-bold text-accent mb-8">
+      <section className="container mx-auto px-6 mb-8 md:mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-6 md:mb-8">
           {data?.title ?? ""}
         </h1>
 
         {/* Image Gallery */}
-        <div className="bg-primary-light rounded-3xl p-8">
-          <div className="relative h-96 flex items-center justify-center mb-6">
+        <div className="bg-primary-light rounded-2xl md:rounded-3xl p-4 md:p-8">
+          <div className="relative h-64 sm:h-80 md:h-96 flex items-center justify-center mb-4 md:mb-6">
             {/* Main product image */}
             {images.length > 0 && images[currentImage]?.image ? (
               <img
                 src={images[currentImage].image}
                 alt={data?.title ?? "Product image"}
-                className="object-contain"
+                className="object-contain max-h-full"
               />
             ) : (
               <div className="text-white/50">{t("products.no_image")}</div>
@@ -69,17 +69,17 @@ export default function ProductDetailPage() {
                   onClick={() =>
                     setCurrentImage(Math.max(0, currentImage - 1))
                   }
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
-                  <ChevronLeft className="text-white" />
+                  <ChevronLeft className="text-white w-5 h-5 md:w-6 md:h-6" />
                 </button>
                 <button
                   onClick={() =>
                     setCurrentImage(Math.min(images.length - 1, currentImage + 1))
                   }
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
-                  <ChevronRight className="text-white" />
+                  <ChevronRight className="text-white w-5 h-5 md:w-6 md:h-6" />
                 </button>
               </>
             )}
@@ -87,13 +87,13 @@ export default function ProductDetailPage() {
 
           {/* Thumbnail navigation */}
           {images.length > 1 && (
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-2 md:gap-4">
               {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImage(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentImage === index ? "bg-accent w-8" : "bg-white/30"
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                    currentImage === index ? "bg-accent w-6 md:w-8" : "bg-white/30"
                   }`}
                 />
               ))}
@@ -103,27 +103,27 @@ export default function ProductDetailPage() {
       </section>
 
       {/* Description */}
-      <section className="container mx-auto px-6 mb-20">
-        <div className="bg-white rounded-3xl p-8 md:p-12">
+      <section className="container mx-auto px-6 mb-12 md:mb-20">
+        <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12">
           {data?.short_description && (
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-primary mb-6">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-primary mb-4 md:mb-6">
                 {t("products.specifications")}
               </h2>
               <div
-                className="text-primary/80 leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-2"
+                className="text-primary/80 leading-relaxed text-sm md:text-base [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-2"
                 dangerouslySetInnerHTML={{ __html: data.short_description }}
               />
             </div>
           )}
 
           {data?.description && (
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-primary mb-4">
+            <div className="mt-8 md:mt-12">
+              <h2 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">
                 {t("products.description")}
               </h2>
               <div
-                className="text-primary/80 leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-2"
+                className="text-primary/80 leading-relaxed text-sm md:text-base [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-2"
                 dangerouslySetInnerHTML={{ __html: data.description }}
               />
             </div>
@@ -133,11 +133,11 @@ export default function ProductDetailPage() {
 
       {/* Related Products */}
       {similarProducts.length > 0 && (
-        <section className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-8">
+        <section className="container mx-auto px-6 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
             {t("products.related_products")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {similarProducts.map((product, index) => (
               <ProductCard
                 key={product.id}

@@ -11,10 +11,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          dark: "#0f2525",
+          DEFAULT: "#192C2F",
+          dark: "#0f1f21",
           light: "#254545",
-          foreground: "hsl(var(--primary-foreground))",
+          foreground: "#ffffff",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",

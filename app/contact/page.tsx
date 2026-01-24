@@ -64,42 +64,42 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-[#192C2F] mt-[60px]">
+    <div className="min-h-screen pt-20 md:pt-24 pb-12 bg-primary">
       <section className="container mx-auto px-6">
-        <h1 className="text-5xl md:text-6xl font-bold text-accent mb-12 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-8 md:mb-12 text-center">
           {t("contact.title")}
         </h1>
 
         {/* Contact Methods */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-16">
           <div className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Phone className="text-accent" size={32} />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Phone className="text-accent w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="text-white font-semibold mb-2">
+            <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.consultation")}
             </h3>
-            <p className="text-white/70">+998(90)123-45-67</p>
+            <p className="text-white/70 text-sm md:text-base">+998(90)123-45-67</p>
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Globe className="text-accent" size={32} />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Globe className="text-accent w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="text-white font-semibold mb-2">
+            <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.online_consultation")}
             </h3>
-            <p className="text-white/70">+998(90)123-45-67</p>
+            <p className="text-white/70 text-sm md:text-base">+998(90)123-45-67</p>
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Send className="text-accent" size={32} />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <Send className="text-accent w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="text-white font-semibold mb-2">
+            <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.write_us")}
             </h3>
-            <p className="text-white/70">@paxtamashkattaqo'rg'on</p>
+            <p className="text-white/70 text-sm md:text-base break-all">@paxtamashkattaqo'rg'on</p>
           </div>
         </div>
 
@@ -107,17 +107,17 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto">
           <form
             onSubmit={handleSubmitBottom(onSubmitBottom)}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
             <div>
               <input
                 type="text"
                 placeholder={t("home.name")}
-                className="w-full bg-transparent border-2 border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
+                className="w-full bg-transparent border-2 border-white/20 rounded-full px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
                 {...registerBottom("full_name")}
               />
               {errorsBottom.full_name && (
-                <p className="text-red-500 text-xs mt-1 px-6">
+                <p className="text-red-500 text-xs mt-1 px-4 md:px-6">
                   {errorsBottom.full_name.message}
                 </p>
               )}
@@ -127,11 +127,11 @@ export default function ContactPage() {
               <input
                 type="tel"
                 placeholder={t("contact.your_phone")}
-                className="w-full bg-transparent border-2 border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
+                className="w-full bg-transparent border-2 border-white/20 rounded-full px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
                 {...registerBottom("phone")}
               />
               {errorsBottom.phone && (
-                <p className="text-red-500 text-xs mt-1 px-6">
+                <p className="text-red-500 text-xs mt-1 px-4 md:px-6">
                   {errorsBottom.phone.message}
                 </p>
               )}
@@ -141,11 +141,11 @@ export default function ContactPage() {
               <input
                 type="email"
                 placeholder={t("contact.your_email")}
-                className="w-full bg-transparent border-2 border-white/20 rounded-full px-6 py-4 text-white placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
+                className="w-full bg-transparent border-2 border-white/20 rounded-full px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
                 {...registerBottom("email")}
               />
               {errorsBottom.email && (
-                <p className="text-red-500 text-xs mt-1 px-6">
+                <p className="text-red-500 text-xs mt-1 px-4 md:px-6">
                   {errorsBottom.email.message}
                 </p>
               )}
@@ -154,12 +154,12 @@ export default function ContactPage() {
             <div>
               <textarea
                 placeholder={t("contact.write_message")}
-                rows={6}
-                className="w-full bg-transparent border-2 border-white/20 rounded-3xl px-6 py-4 text-white placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors resize-none"
+                rows={5}
+                className="w-full bg-transparent border-2 border-white/20 rounded-2xl md:rounded-3xl px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors resize-none"
                 {...registerBottom("message")}
               ></textarea>
               {errorsBottom.message && (
-                <p className="text-red-500 text-xs mt-1 px-6">
+                <p className="text-red-500 text-xs mt-1 px-4 md:px-6">
                   {errorsBottom.message.message}
                 </p>
               )}
@@ -167,7 +167,7 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full bg-accent hover:bg-accent-dark text-primary font-bold py-5 rounded-full transition-all hover:shadow-lg"
+              className="w-full bg-accent hover:bg-accent-dark text-primary font-bold py-4 md:py-5 rounded-full transition-all hover:shadow-lg text-sm md:text-base"
             >
               {contactLoading ? (
                 <div className="flex items-center justify-center gap-2 text-gray-600">

@@ -4,9 +4,10 @@
 
 @layer base {
   :root {
-    --primary: 25 17% 18%;
-    --primary-dark: 15 17% 15%;
-    --primary-light: 25 17% 27%;
+    --primary: 188 31% 14%;
+    --primary-dark: 188 31% 10%;
+    --primary-light: 188 25% 20%;
+    --primary-teal: #192C2F;
     --accent: 85 100% 75%;
     --accent-dark: 95 80% 65%;
     --background: 0 0% 100%;

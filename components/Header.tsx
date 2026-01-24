@@ -19,24 +19,24 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#223235] backdrop-blur-sm border-b border-white/10">
-      <nav className="container max-w-[1295px] mx-auto px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-sm border-b border-white/10">
+      <nav className="container max-w-[1295px] mx-auto px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl font-bold text-white hover:text-accent transition-colors"
+            className="text-xl md:text-2xl font-bold text-white hover:text-accent transition-colors"
           >
             Logo
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-[60px]">
+          <div className="hidden lg:flex items-center gap-8 xl:gap-[60px]">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white text-lg hover:text-accent transition-colors font-normal"
+                className="text-white text-base xl:text-lg hover:text-accent transition-colors font-normal"
               >
                 {item.name}
               </Link>
@@ -44,7 +44,7 @@ export default function Header() {
           </div>
 
           {/* Right side actions */}
-          <div className="hidden lg:flex items-center gap-[46px]">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-[46px]">
             <button className="text-white hover:text-accent transition-colors">
               <Search size={23} />
             </button>

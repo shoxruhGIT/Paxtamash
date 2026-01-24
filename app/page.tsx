@@ -73,7 +73,7 @@ export default function Home() {
 
   return (
     <div className="relative overflow-x-hidden">
-      <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-[#192C2F] overflow-hidden">
+      <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-primary overflow-hidden">
         <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-0 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-white space-y-6 md:space-y-8">
@@ -84,12 +84,12 @@ export default function Home() {
               <div className="pt-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center gap-5 bg-white text-2xl text-black pl-[32px] pr-3 py-[9.25px] rounded-full font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up font-manrope"
+                  className="inline-flex items-center justify-center gap-3 md:gap-5 bg-white text-lg md:text-2xl text-black pl-6 md:pl-[32px] pr-2 md:pr-3 py-2 md:py-[9.25px] rounded-full font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up font-manrope"
                   style={{ animationDelay: "0.2s" }}
                 >
                   {t("home.btn")}
-                  <div className="w-[58px] h-[58px] bg-[#BDFF69] rounded-full flex items-center justify-center">
-                    <img src="/right.png" alt="" />
+                  <div className="w-12 h-12 md:w-[58px] md:h-[58px] bg-[#BDFF69] rounded-full flex items-center justify-center">
+                    <img src="/right.png" alt="" className="w-5 h-5 md:w-auto md:h-auto" />
                   </div>
                 </Link>
               </div>
@@ -98,38 +98,38 @@ export default function Home() {
             <img
               src="/image-Photoroom (4)_upscayl_5x_realesrgan-x4plus 1.png"
               alt="Textile machinery equipment"
-              className="absolute right-0 -top-48"
+              className="hidden md:block absolute right-0 top-0 lg:-top-48 w-1/2 lg:w-auto max-w-[600px] lg:max-w-none"
             />
           </div>
         </div>
 
-        <div className="absolute inset-0  bg-gradient-to-r from-[#192C2F]/60 to-transparent  pointer-events-none" />
+        <div className="absolute inset-0  bg-gradient-to-r from-primary/60 to-transparent  pointer-events-none" />
       </section>
 
       {/* Scrolling Text Banner */}
-      <section className="py-8 overflow-hidden bg-[#192C2F]">
+      <section className="py-4 md:py-8 overflow-hidden bg-primary">
         <div className="flex whitespace-nowrap scrolling-text">
-          <span className="text-6xl md:text-8xl font-bold text-accent mx-8">
+          <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-accent mx-4 md:mx-8">
             {t("home.hero")}
           </span>
-          <span className="text-6xl md:text-8xl font-bold text-accent mx-8">
+          <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-accent mx-4 md:mx-8">
             {t("home.hero")}
           </span>
-          <span className="text-6xl md:text-8xl font-bold text-accent mx-8">
+          <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-accent mx-4 md:mx-8">
             {t("home.hero")}
           </span>
         </div>
       </section>
 
       {/* Contact Form Section - TOP */}
-      <section className="hidden md:flex py-12 bg-[#192C2F]">
+      <section className="hidden md:flex py-12 bg-primary">
         <div className="container mx-auto px-6">
           <form onSubmit={handleSubmitTop(onSubmitTop)}>
             <div className="bg-white backdrop-blur-sm rounded-[8px] p-6 max-w-[1113px] mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-4 md:gap-6 items-end lg:items-center font-inter">
                 <div className="relative">
                   <UserRound
-                    className="absolute left-2 top-1/2 -translate-y-1/2 text-[#192C2F]"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 text-primary"
                     size={26}
                   />
                   <div>
@@ -152,7 +152,7 @@ export default function Home() {
 
                 <div className="relative">
                   <Phone
-                    className="absolute left-2 top-1/2 -translate-y-1/2 text-[#192C2F]"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 text-primary"
                     size={26}
                   />
                   <div>
@@ -175,7 +175,7 @@ export default function Home() {
 
                 <div className="relative">
                   <Mail
-                    className="absolute left-2 top-1/2 -translate-y-1/2 text-[#192C2F]"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 text-primary"
                     size={26}
                   />
                   <div>
@@ -198,7 +198,7 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="btn-primary w-[153px] sm:col-span-2 lg:col-span-1 lg:w-auto whitespace-nowrap rounded-full bg-[#192C2F] text-white hover:bg-[#192c2fec] transition-colors text-sm md:text-base"
+                  className="btn-primary w-[153px] sm:col-span-2 lg:col-span-1 lg:w-auto whitespace-nowrap rounded-full bg-primary text-white hover:bg-primary/90 transition-colors text-sm md:text-base"
                 >
                   {contactLoading ? (
                     <div className="flex items-center justify-center gap-2 text-gray-600">
@@ -215,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* About Section with Background */}
-      <section className=" relative bg-[#192C2F]">
+      <section className=" relative bg-primary">
         <div className="absolute inset-0 opacity-30">
           <div className="w-full h-full"></div>
         </div>
@@ -273,18 +273,18 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="space-y-6">
-              <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 {t("home.sale")}
               </h2>
-              <p className="text-gray-600 text-lg max-w-lg">
+              <p className="text-gray-600 text-base md:text-lg max-w-lg">
                 {t("home.sale_desc")}
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <button className="bg-white border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all flex items-center gap-3 text-lg">
-                  <Phone size={22} />
+              <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
+                <button className="bg-white border-2 border-gray-900 text-gray-900 px-4 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-50 transition-all flex items-center gap-2 md:gap-3 text-sm md:text-lg">
+                  <Phone size={20} className="md:w-[22px] md:h-[22px]" />
                   +998(90)1234567
                 </button>
-                <button className="bg-gray-900 text-white px-10 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all text-lg">
+                <button className="bg-gray-900 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-800 transition-all text-sm md:text-lg">
                   {t("home.buy")}
                 </button>
               </div>
@@ -313,7 +313,7 @@ export default function Home() {
       <WaveDecoration className="h-32 rotate-180" />
 
       {/* Products Section */}
-      <section className="py-20 bg-[#192C2F]">
+      <section className="py-20 bg-primary">
         <div className="container mx-auto px-6">
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -346,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* Map and Contact Form - BOTTOM */}
-      <section className="py-20 bg-[#192C2F]">
+      <section className="py-20 bg-primary">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Map */}
@@ -445,17 +445,17 @@ export default function Home() {
       </section>
 
       {/* Partner Logos */}
-      <section className="flex items-center justify-center py-12">
+      <section className="flex items-center justify-center py-8 md:py-12 px-6">
         <div className="container mx-auto flex items-center justify-center">
-          <div className="flex flex-wrap justify-center items-center gap-12">
-            <span className="text-black text-xl font-semibold">PESTCO</span>
-            <span className="text-black text-xl font-semibold">Mish BEDIO</span>
-            <span className="text-black text-xl font-semibold">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+            <span className="text-black text-base md:text-xl font-semibold">PESTCO</span>
+            <span className="text-black text-base md:text-xl font-semibold">Mish BEDIO</span>
+            <span className="text-black text-base md:text-xl font-semibold">
               Comedy Club
             </span>
-            <span className="text-black text-xl font-semibold">MADRESS</span>
-            <span className="text-black text-xl font-semibold">Laundryea</span>
-            <span className="text-black text-xl font-semibold">PROSOCCER</span>
+            <span className="text-black text-base md:text-xl font-semibold">MADRESS</span>
+            <span className="text-black text-base md:text-xl font-semibold">Laundryea</span>
+            <span className="text-black text-base md:text-xl font-semibold">PROSOCCER</span>
           </div>
         </div>
       </section>
