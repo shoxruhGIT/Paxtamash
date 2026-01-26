@@ -3,12 +3,12 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 // Import JSON files
-import uzCommon from "@/public/locales/uz/common.json";
+import enCommon from "@/public/locales/en/common.json";
 import ruCommon from "@/public/locales/ru/common.json";
 
 const resources = {
-  uz: {
-    translation: uzCommon,
+  en: {
+    translation: enCommon,
   },
   ru: {
     translation: ruCommon,
@@ -19,8 +19,8 @@ const resources = {
 if (!i18n.isInitialized) {
   i18n.use(initReactI18next).init({
     resources,
-    lng: "uz",
-    fallbackLng: "uz",
+    lng: "ru",
+    fallbackLng: "ru",
     interpolation: {
       escapeValue: false,
     },

@@ -2,6 +2,7 @@ import { apiClient, endpoints } from "@/app/api";
 import {
   AccountsResponseSchema,
   homeSchema,
+  PartnersResponseSchema,
   ProductDetailSchema,
   ProductsResponseSchema,
 } from "./schema";
@@ -33,5 +34,9 @@ export const rootRequests = {
   productDetail: async (id: number) => {
     const response = await apiClient.get(endpoints.root.productById(id));
     return ProductDetailSchema.parse(response.data);
+  },
+  partners: async () => {
+    const response = await apiClient.get(endpoints.root.partners);
+    return PartnersResponseSchema.parse(response.data);
   },
 };

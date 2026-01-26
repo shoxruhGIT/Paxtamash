@@ -19,7 +19,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen pt-20 md:pt-12">
+    <div className="min-h-screen pt-20 md:pt-24">
       {/* Hero Section */}
       <section className="py-12 md:py-20">
         <div className="container max-w-[1295px] mx-auto px-6">
@@ -44,7 +44,7 @@ export default function ProductsPage() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-[890px] font-medium text-[#B8E986] leading-tight">
                 {t("products.features_title")}
               </h2>
-              <ul className="max-w-full md:max-w-[392px] space-y-5 md:space-y-7">
+              <ul className="max-w-full md:max-w-[392px] space-y-6 md:space-y-8">
                 <li className="flex items-start gap-3">
                   <div className="space-y-2 md:space-y-3">
                     <div className="flex items-center gap-3 md:gap-4">

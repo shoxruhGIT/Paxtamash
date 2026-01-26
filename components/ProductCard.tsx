@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 interface ProductCardProps {
   id: string;
@@ -17,6 +20,8 @@ const ProductCard = ({
   imageColor,
   index,
 }: ProductCardProps) => {
+  const { t } = useTranslation();
+
   // Automatically determine variant based on index: black, lime, white, lime
   const variantMap: Array<"black" | "lime" | "white" | "darkTeal"> = [
     "black",
@@ -86,9 +91,9 @@ const ProductCard = ({
       {/* Button */}
       <button
         onClick={() => navigate.push(`/products/${id}`)}
-        className={`${style?.button} ${style?.buttonText} rounded-full pl-4 md:pl-[35px] pr-2 md:pr-[11px] py-2 md:py-[9.75px] font-medium text-xs md:text-sm flex items-center justify-between group w-full transition-all`}
+        className={`${style?.button} ${style?.buttonText} rounded-full pl-4 md:pl-8 pr-2 md:pr-3 py-2 md:py-2.5 font-medium text-xs md:text-sm flex items-center justify-between group w-full transition-all`}
       >
-        <span className="text-sm md:text-[17px]">Xususiyatlarni ko'rish</span>
+        <span className="text-sm md:text-[17px]">{t("products.view_features")}</span>
         <div
           className={`${style?.iconBg} rounded-full w-10 h-10 md:w-14 md:h-14 flex items-center justify-center ml-2 transition-transform group-hover:translate-x-1`}
         >

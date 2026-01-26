@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero_subtitle": "High quality is the key to your business success.",
+    "btn": "Products",
+    "hero": "Kattakurgan Cotton Mill",
+    "akkum": "Current battery production technologies are unstable.",
+    "about": "Learn More",
+    "sale": "Get 10% discount!",
+    "sale_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+    "buy": "Place Order",
+    "abouts": "View All",
+    "call": "Contact Us",
+    "name": "Your Name",
+    "phone": "Your Phone Number",
+    "sms": "Write a message",
+    "add": "Submit",
+    "your_name": "Your Name",
+    "how_to_call": "Enter your name",
+    "your_number": "Your Number",
+    "your_phone": "Enter your phone number",
+    "your_email": "Your E-mail",
+    "email_placeholder": "Enter your email address",
+    "get_consultation": "Get Consultation"
+  },
+  "about": {
+    "title": "Proven experience in conveyor technology innovations",
+    "old": "Before",
+    "new": "Now",
+    "text": "Why choose us?",
+    "text-new": "Our Branches",
+    "team_title": "Our Specialists",
+    "stats": {
+      "satisfied_clients": "Satisfied Clients",
+      "completed_projects": "Completed Projects",
+      "specialists": "Specialists",
+      "foreign_partners": "Foreign Partners"
+    },
+    "features": {
+      "affordable_price": "Affordable Prices",
+      "quality_product": "Quality Product",
+      "fast_delivery": "Fast Delivery",
+      "high_tech": "High Technology"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "hero_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
+    "features_title": "Current battery production technologies are unstable.",
+    "back": "Back",
+    "specifications": "Specifications:",
+    "description": "Description:",
+    "related_products": "Related Products:",
+    "no_image": "No image available",
+    "view_features": "View Features"
+  },
+  "contact": {
+    "title": "Want to learn more about our products?",
+    "consultation": "Book a Consultation",
+    "online_consultation": "Online Consultation",
+    "write_us": "Write to Us",
+    "your_name": "Your Name",
+    "your_phone": "Your Phone Number",
+    "your_email": "Your E-mail",
+    "write_message": "Write a message",
+    "submit": "Submit"
+  },
+  "footer": {
+    "rights": "© 2025 «Kattakurgan Cotton Mill». All rights reserved.",
+    "quick_links": "Quick Links",
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "contact": "Contact",
+    "contacts": "Contacts",
+    "created_by": "Website Developer"
+  },
+  "toast": {
+    "success": "Your request has been sent successfully!",
+    "error": "An error occurred. Please try again later."
+  }
+}

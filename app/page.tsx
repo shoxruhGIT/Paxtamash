@@ -14,14 +14,12 @@ import WaveDecoration from "@/components/WaveDecoration";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useContact, useHomeData } from "./features";
+import { useContact, useHomeData, usePartners } from "./features";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { contactFormSchema, contactFormSchemaBottom } from "@/lib/validation";
-
-
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 type ContactFormDataBottom = z.infer<typeof contactFormSchemaBottom>;
@@ -30,6 +28,7 @@ export default function Home() {
   const { t } = useTranslation();
   const { data: homeData, isLoading } = useHomeData();
   const { data: contact, submit, isLoading: contactLoading } = useContact();
+  const { data: partners } = usePartners();
 
   // Top contact form
   const {
@@ -74,7 +73,7 @@ export default function Home() {
   return (
     <div className="relative overflow-x-hidden">
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-primary overflow-hidden">
-        <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-0 relative z-10">
+        <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-white space-y-6 md:space-y-8">
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up">
@@ -84,12 +83,16 @@ export default function Home() {
               <div className="pt-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center gap-3 md:gap-5 bg-white text-lg md:text-2xl text-black pl-6 md:pl-[32px] pr-2 md:pr-3 py-2 md:py-[9.25px] rounded-full font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up font-manrope"
+                  className="inline-flex items-center justify-center gap-3 md:gap-5 bg-white text-lg md:text-2xl text-black pl-6 md:pl-8 pr-2 md:pr-3 py-2 md:py-2.5 rounded-full font-semibold hover:shadow-xl hover:bg-gray-100 transition-all animate-fade-up font-manrope"
                   style={{ animationDelay: "0.2s" }}
                 >
                   {t("home.btn")}
-                  <div className="w-12 h-12 md:w-[58px] md:h-[58px] bg-[#BDFF69] rounded-full flex items-center justify-center">
-                    <img src="/right.png" alt="" className="w-5 h-5 md:w-auto md:h-auto" />
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-[#BDFF69] rounded-full flex items-center justify-center">
+                    <img
+                      src="/right.png"
+                      alt=""
+                      className="w-5 h-5 md:w-auto md:h-auto"
+                    />
                   </div>
                 </Link>
               </div>
@@ -98,7 +101,7 @@ export default function Home() {
             <img
               src="/image-Photoroom (4)_upscayl_5x_realesrgan-x4plus 1.png"
               alt="Textile machinery equipment"
-              className="hidden md:block absolute right-0 top-0 lg:-top-48 w-1/2 lg:w-auto max-w-[600px] lg:max-w-none"
+              className="hidden md:block absolute -right-28 top-0 lg:-top-48 w-1/2 lg:w-auto max-w-[600px] lg:max-w-none"
             />
           </div>
         </div>
@@ -215,7 +218,7 @@ export default function Home() {
       </section>
 
       {/* About Section with Background */}
-      <section className=" relative bg-primary">
+      <section className="relative bg-primary pb-10">
         <div className="absolute inset-0 opacity-30">
           <div className="w-full h-full"></div>
         </div>
@@ -234,9 +237,9 @@ export default function Home() {
             tellus ut, condimentum orci. Praesent mattis varius pharetra. Nulla
             ante diam, sodales vitae purus sit amet, eleifend sagittis magna.
           </p>
-          <button className="text-accent hover:text-accent-dark transition-colors flex items-center gap-2 font-semibold">
+          <Link href={'/about'} className="text-accent hover:text-accent-dark transition-colors flex items-center gap-2 font-semibold">
             {t("home.about")} <ArrowRight size={20} />
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -279,7 +282,7 @@ export default function Home() {
               <p className="text-gray-600 text-base md:text-lg max-w-lg">
                 {t("home.sale_desc")}
               </p>
-              <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
+              <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
                 <button className="bg-white border-2 border-gray-900 text-gray-900 px-4 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-50 transition-all flex items-center gap-2 md:gap-3 text-sm md:text-lg">
                   <Phone size={20} className="md:w-[22px] md:h-[22px]" />
                   +998(90)1234567
@@ -320,18 +323,18 @@ export default function Home() {
               <Loader2 className="h-10 w-10 animate-spin text-white" />
             </div>
           ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {homeData?.product?.slice(0, 4).map((product, idx) => (
-              <ProductCard
-                key={product.id}
-                id={String(product?.id)}
-                name={product?.title || ""}
-                description={product?.short_description || ""}
-                imageColor={product?.image || ""}
-                index={idx}
-              />
-            ))}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {homeData?.product?.slice(0, 4).map((product, idx) => (
+                <ProductCard
+                  key={product.id}
+                  id={String(product?.id)}
+                  name={product?.title || ""}
+                  description={product?.short_description || ""}
+                  imageColor={product?.image || ""}
+                  index={idx}
+                />
+              ))}
+            </div>
           )}
           <div className="text-center mt-8">
             <Link
@@ -445,17 +448,39 @@ export default function Home() {
       </section>
 
       {/* Partner Logos */}
-      <section className="flex items-center justify-center py-8 md:py-12 px-6">
-        <div className="container mx-auto flex items-center justify-center">
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12">
-            <span className="text-black text-base md:text-xl font-semibold">PESTCO</span>
-            <span className="text-black text-base md:text-xl font-semibold">Mish BEDIO</span>
-            <span className="text-black text-base md:text-xl font-semibold">
-              Comedy Club
-            </span>
-            <span className="text-black text-base md:text-xl font-semibold">MADRESS</span>
-            <span className="text-black text-base md:text-xl font-semibold">Laundryea</span>
-            <span className="text-black text-base md:text-xl font-semibold">PROSOCCER</span>
+      <section className="py-8 md:py-12 bg-white">
+        <div className="partners-scroll-container">
+          <div className="partners-scroll-track">
+            {/* First set of partners */}
+            {partners?.results?.map((partner, idx) => (
+              <Link
+                key={`first-${idx}`}
+                href={partner?.link || "#"}
+                target="_blank"
+                className="flex-shrink-0 mx-8 md:mx-12 grayscale hover:grayscale-0 transition-all duration-300"
+              >
+                <img
+                  src={partner?.image}
+                  alt={partner?.link || "Partner"}
+                  className="w-28 md:w-36 h-auto object-contain cursor-pointer hover:scale-110 transition-transform duration-300"
+                />
+              </Link>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {partners?.results?.map((partner, idx) => (
+              <Link
+                key={`second-${idx}`}
+                href={partner?.link || "#"}
+                target="_blank"
+                className="flex-shrink-0 mx-8 md:mx-12 grayscale hover:grayscale-0 transition-all duration-300"
+              >
+                <img
+                  src={partner?.image}
+                  alt={partner?.link || "Partner"}
+                  className="w-28 md:w-36 h-auto object-contain cursor-pointer hover:scale-110 transition-transform duration-300"
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

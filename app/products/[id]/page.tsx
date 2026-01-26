@@ -104,7 +104,7 @@ export default function ProductDetailPage() {
 
       {/* Description */}
       <section className="container mx-auto px-6 mb-12 md:mb-20">
-        <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12">
+        <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10">
           {data?.short_description && (
             <div className="mb-6 md:mb-8">
               <h2 className="text-xl md:text-2xl font-bold text-primary mb-4 md:mb-6">

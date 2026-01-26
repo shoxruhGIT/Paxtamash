@@ -27,11 +27,11 @@ export default function Header() {
             href="/"
             className="text-xl md:text-2xl font-bold text-white hover:text-accent transition-colors"
           >
-            Logo
+            <img src="/logo.png" alt="logo" className="w-44" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-[60px]">
+          <div className="hidden lg:flex items-center gap-8 xl:gap-16">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -44,7 +44,7 @@ export default function Header() {
           </div>
 
           {/* Right side actions */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-[46px]">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-12">
             <button className="text-white hover:text-accent transition-colors">
               <Search size={23} />
             </button>
@@ -53,8 +53,8 @@ export default function Header() {
             <div className="relative group">
               <button className="flex items-center space-x-2 text-white hover:text-accent transition-colors">
                 <img
-                  src={currentLang === "ru" ? "https://flagcdn.com/w40/ru.png" : "https://flagcdn.com/w40/uz.png"}
-                  alt={currentLang === "ru" ? "Russian" : "Uzbek"}
+                  src={currentLang === "ru" ? "https://flagcdn.com/w40/ru.png" : "https://flagcdn.com/w40/gb.png"}
+                  alt={currentLang === "ru" ? "Russian" : "English"}
                   className="w-9 h-[22px] object-cover"
                 />
                 <ChevronDown size={16} />
@@ -68,13 +68,13 @@ export default function Header() {
                   />
                   <span>Русский</span>
                 </button>
-                <button onClick={() => i18n.changeLanguage("uz")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
+                <button onClick={() => i18n.changeLanguage("en")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
                   <img
-                    src="https://flagcdn.com/w40/uz.png"
-                    alt="Uzbek"
+                    src="https://flagcdn.com/w40/gb.png"
+                    alt="English"
                     className="w-6 h-4"
                   />
-                  <span>O'zbek</span>
+                  <span>English</span>
                 </button>
               </div>
             </div>
@@ -105,11 +105,11 @@ export default function Header() {
             {/* Mobile Language Selector */}
             <div className="flex items-center gap-4 pt-4 border-t border-white/10 mt-4">
               <button
-                onClick={() => i18n.changeLanguage("uz")}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "uz" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
+                onClick={() => i18n.changeLanguage("en")}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "en" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
               >
-                <img src="https://flagcdn.com/w40/uz.png" alt="Uzbek" className="w-6 h-4" />
-                <span>O'zbek</span>
+                <img src="https://flagcdn.com/w40/gb.png" alt="English" className="w-6 h-4" />
+                <span>English</span>
               </button>
               <button
                 onClick={() => i18n.changeLanguage("ru")}

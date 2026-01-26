@@ -71,7 +71,7 @@ export default function ContactPage() {
         </h1>
 
         {/* Contact Methods */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
           <div className="text-center">
             <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
               <Phone className="text-accent w-6 h-6 md:w-8 md:h-8" />

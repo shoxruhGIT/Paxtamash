@@ -77,3 +77,18 @@ export const ProductDetailSchema = z.object({
   similar_products: z.array(SimilarProductSchema).nullable().optional(),
 });
 export type ProductDetail = z.infer<typeof ProductDetailSchema>;
+
+export const ResultSchema = z.object({
+  image: z.string().url(),
+  link: z.string().url(),
+});
+
+export const PartnersResponseSchema = z.object({
+  count: z.number(),
+  next: z.string().url().nullable(),
+  previous: z.string().url().nullable(),
+  results: z.array(ResultSchema),
+});
+
+// agar type ham kerak bo‘lsa:
+export type ApiResponse = z.infer<typeof PartnersResponseSchema>;

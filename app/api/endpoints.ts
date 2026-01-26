@@ -5,5 +5,6 @@ export const endpoints = {
     productById: (id: number) => `/products/${id}`,
     staffs: "/staffs",
     contact: "/contact/",
+    partners: "/partners",
   },
 };

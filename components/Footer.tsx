@@ -13,7 +13,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* Logo and description */}
           <div className="col-span-2 md:col-span-2">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Logo</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+              <img src="/logo.png" alt="logo" className="w-44" />
+            </h3>
             <p className="text-white/70 mb-3 md:mb-4 text-sm md:text-base">
               {t("footer.rights")}
             </p>
@@ -47,8 +49,10 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">{t("footer.quick_links")}</h4>
-            <ul className="space-y-1.5 md:space-y-2">
+            <h4 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">
+              {t("footer.quick_links")}
+            </h4>
+            <ul className="space-y-2 md:space-y-3">
               <li>
                 <Link
                   href="/"
@@ -86,7 +90,9 @@ export default function Footer() {
 
           {/* Contact info */}
           <div>
-            <h4 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">{t("footer.contacts")}</h4>
+            <h4 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">
+              {t("footer.contacts")}
+            </h4>
             <ul className="space-y-1.5 md:space-y-2 text-white/70 text-sm md:text-base">
               <li>+998(90)123-45-67</li>
               <li className="break-all">@paxtamashkattaqo'rg'on</li>
@@ -95,22 +101,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Partner logos */}
-        <div className="border-t border-white/10 pt-6 md:pt-8">
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 opacity-50">
-            <span className="text-white text-xs md:text-sm">PESTCO</span>
-            <span className="text-white text-xs md:text-sm">Mish BEDIO</span>
-            <span className="text-white text-xs md:text-sm">Comedy Club</span>
-            <span className="text-white text-xs md:text-sm">MADRESS</span>
-            <span className="text-white text-xs md:text-sm">Laundryea</span>
-            <span className="text-white text-xs md:text-sm">PROSOCCER</span>
-          </div>
-        </div>
-
         {/* Bottom text */}
         <div className="mt-6 md:mt-8 text-center">
           <Link
-            href="/privacy"
+            href="https://capma.uz"
+            target="_blank"
             className="text-white/50 hover:text-accent text-xs md:text-sm transition-colors"
           >
             {t("footer.created_by")}

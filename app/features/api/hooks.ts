@@ -69,3 +69,16 @@ export const useProductDetail = (id: number | null) => {
     mutate,
   };
 };
+
+export const usePartners = () => {
+  const { data, error, isLoading, mutate } = useSWR(
+    "partners",
+    rootRequests.partners,
+  );
+  return {
+    data,
+    error,
+    isLoading,
+    mutate,
+  };
+};

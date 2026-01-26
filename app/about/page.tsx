@@ -114,11 +114,11 @@ export default function AboutPage() {
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="w-full relative min-h-[60vh] md:min-h-screen flex items-center bg-[url('/about_banner.png')] bg-cover bg-center pt-20 md:pt-0">
+      <section className="w-full relative min-h-[60vh] md:min-h-screen flex items-center bg-[url('/about_banner.png')] bg-cover bg-center pt-20 md:pt-24">
         {/* Qora overlay */}
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="container max-w-[1295px] mx-auto px-6 relative z-10 py-12 md:py-0">
+        <div className="container max-w-[1295px] mx-auto px-6 relative z-10 py-12 md:py-16">
           <div className="">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-accent mb-4 md:mb-6 leading-relaxed md:leading-[2]">
               {t("home.akkum")}
@@ -363,7 +363,7 @@ export default function AboutPage() {
                 className="bg-primary-dark rounded-2xl md:rounded-3xl hover-lift overflow-hidden py-4 md:py-6"
               >
                 {/* Name Section */}
-                <div className="p-4 md:p-6 pb-3 md:pb-4">
+                <div className="px-4 md:px-6 pt-4 md:pt-6 pb-4">
                   <h3 className="text-accent text-xl sm:text-2xl md:text-3xl font-medium">
                     {member.first_name}
                   </h3>
@@ -387,7 +387,7 @@ export default function AboutPage() {
                 <div className="w-full h-[2px] bg-white/20" />
 
                 {/* Role and Description Section */}
-                <div className="p-4 md:p-6 pt-3 md:pt-4">
+                <div className="px-4 md:px-6 pt-4 pb-4 md:pb-6">
                   <p className="text-accent text-base md:text-xl font-normal mb-2 md:mb-3">
                     {member.role}
                   </p>
