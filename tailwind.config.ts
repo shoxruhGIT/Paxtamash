@@ -60,6 +60,8 @@ const config: Config = {
         display: ["var(--font-display)"],
         manrope: ["var(--font-manrope)"],
         inter: ["var(--font-inter)"],
+        heading: ["var(--font-heading)", "sans-serif"],
+        paragraph: ["var(--font-paragraph)", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

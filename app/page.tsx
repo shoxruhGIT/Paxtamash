@@ -76,7 +76,7 @@ export default function Home() {
         <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-white space-y-6 md:space-y-8">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up">
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up font-heading">
                 {t("home.hero_subtitle")}
               </h1>
 
@@ -223,7 +223,7 @@ export default function Home() {
           <div className="w-full h-full"></div>
         </div>
         <div className="container mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">
             {t("home.akkum")}
           </h2>
           <p className="text-white/80 text-lg max-w-3xl mb-8 leading-relaxed">
@@ -247,7 +247,7 @@ export default function Home() {
       <WaveDecoration className="h-32" />
 
       {/* Special Offer Section */}
-      <section className="relative bg-white py-20 overflow-hidden">
+      <section className="relative bg-white overflow-hidden">
         {/* Wavy line background pattern */}
         <div className="absolute inset-0 pointer-events-none">
           <svg
@@ -276,7 +276,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="space-y-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight font-heading">
                 {t("home.sale")}
               </h2>
               <p className="text-gray-600 text-base md:text-lg max-w-lg">
@@ -366,7 +366,7 @@ export default function Home() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6">
+              <h2 className="text-3xl font-bold text-white mb-6 font-heading">
                 {t("home.call")}
               </h2>
               <form

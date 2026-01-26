@@ -120,7 +120,7 @@ export default function AboutPage() {
 
         <div className="container max-w-[1295px] mx-auto px-6 relative z-10 py-12 md:py-16">
           <div className="">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-accent mb-4 md:mb-6 leading-relaxed md:leading-[2]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-accent mb-4 md:mb-6 leading-relaxed md:leading-[2] font-heading">
               {t("home.akkum")}
             </h1>
             <p className="max-w-[755px] text-white text-base md:text-lg lg:text-[22px] leading-relaxed md:leading-[2]">
@@ -142,7 +142,7 @@ export default function AboutPage() {
       {/* Timeline Section */}
       <section className="py-12 md:py-20">
         <div className="container max-w-[1295px] mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-relaxed md:leading-[2] mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-relaxed md:leading-[2] mb-8 md:mb-12 font-heading">
             {t("about.title")}
           </h2>
 
@@ -236,7 +236,7 @@ export default function AboutPage() {
         <div className="container max-w-[1295px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4 md:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4 md:mb-6 font-heading">
                 {t("about.text")}
               </h2>
               <p className="text-white/80 mb-6 md:mb-8 leading-relaxed md:leading-[2] text-base md:text-lg">
@@ -294,7 +294,7 @@ export default function AboutPage() {
       {/* Globe Section */}
       <section className="py-12 md:py-20 bg-primary-dark">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12">{t("about.text-new")}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 font-heading">{t("about.text-new")}</h2>
 
           <div className="relative w-full max-w-md mx-auto h-72 md:h-96">
             {/* Globe illustration */}
@@ -347,7 +347,7 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-12 md:py-20">
         <div className="container max-w-[1295px] mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center font-heading">
             {t("about.team_title")}
           </h2>
 

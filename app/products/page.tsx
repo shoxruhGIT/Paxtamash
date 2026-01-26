@@ -24,7 +24,7 @@ export default function ProductsPage() {
       <section className="py-12 md:py-20">
         <div className="container max-w-[1295px] mx-auto px-6">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary font-heading">
               {t("products.hero_text")}
             </h1>
           </div>
@@ -41,7 +41,7 @@ export default function ProductsPage() {
           <div className="relative">
             {/* Left side - Text content */}
             <div className="flex flex-col max-w-full lg:max-w-[900px] relative z-10 gap-6 md:gap-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-[890px] font-medium text-[#B8E986] leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-[890px] font-medium text-[#B8E986] leading-tight font-heading">
                 {t("products.features_title")}
               </h2>
               <ul className="max-w-full md:max-w-[392px] space-y-6 md:space-y-8">
@@ -108,7 +108,7 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <section className="py-12 md:py-20">
         <div className="container max-w-[1295px] mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center font-heading">
             {t("products.title")}
           </h2>
 

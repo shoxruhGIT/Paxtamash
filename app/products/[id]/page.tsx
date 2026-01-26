@@ -44,7 +44,7 @@ export default function ProductDetailPage() {
 
       {/* Product Header */}
       <section className="container mx-auto px-6 mb-8 md:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-6 md:mb-8">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-6 md:mb-8 font-heading">
           {data?.title ?? ""}
         </h1>
 
@@ -107,7 +107,7 @@ export default function ProductDetailPage() {
         <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10">
           {data?.short_description && (
             <div className="mb-6 md:mb-8">
-              <h2 className="text-xl md:text-2xl font-bold text-primary mb-4 md:mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-primary mb-4 md:mb-6 font-heading">
                 {t("products.specifications")}
               </h2>
               <div
@@ -119,7 +119,7 @@ export default function ProductDetailPage() {
 
           {data?.description && (
             <div className="mt-8 md:mt-12">
-              <h2 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-primary mb-3 md:mb-4 font-heading">
                 {t("products.description")}
               </h2>
               <div
@@ -134,7 +134,7 @@ export default function ProductDetailPage() {
       {/* Related Products */}
       {similarProducts.length > 0 && (
         <section className="container mx-auto px-6 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 font-heading">
             {t("products.related_products")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

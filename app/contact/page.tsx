@@ -66,7 +66,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-20 md:pt-24 pb-12 bg-primary">
       <section className="container mx-auto px-6">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-8 md:mb-12 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-accent mb-8 md:mb-12 text-center font-heading">
           {t("contact.title")}
         </h1>
 
