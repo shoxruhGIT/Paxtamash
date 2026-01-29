@@ -6,5 +6,6 @@ export const endpoints = {
     staffs: "/staffs",
     contact: "/contact/",
     partners: "/partners",
+    banner: "/banner"
   },
 };

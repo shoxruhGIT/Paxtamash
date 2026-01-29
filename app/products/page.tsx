@@ -3,20 +3,19 @@
 import ProductCard from "@/components/ProductCard";
 import { useTranslation } from "react-i18next";
 import { useProducts } from "../features";
-import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { useGlobalLoading } from "@/provider/LoadingProvider";
 
 export default function ProductsPage() {
   const { t } = useTranslation();
-
   const { data: products, isLoading } = useProducts();
+  const { stopLoading } = useGlobalLoading();
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-10 w-10 animate-spin text-primary" />
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (!isLoading && products) {
+      stopLoading();
+    }
+  }, [isLoading, products, stopLoading]);
 
   return (
     <div className="min-h-screen pt-20 md:pt-24">
@@ -30,7 +29,11 @@ export default function ProductsPage() {
           </div>
 
           <div className="flex items-center justify-center mt-8">
-            <img src="/cotton_machine.png" alt="" className="w-full max-w-4xl h-auto" />
+            <img
+              src="/cotton_machine.png"
+              alt=""
+              className="w-full max-w-4xl h-auto"
+            />
           </div>
         </div>
       </section>

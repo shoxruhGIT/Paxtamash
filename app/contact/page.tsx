@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Phone, Globe, Send, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { contactFormSchema, contactFormSchemaBottom } from "@/lib/validation";
@@ -9,14 +9,20 @@ import { useContact } from "../features";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { useGlobalLoading } from "@/provider/LoadingProvider";
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 type ContactFormDataBottom = z.infer<typeof contactFormSchemaBottom>;
 
 export default function ContactPage() {
   const { t } = useTranslation();
-
   const { data: contact, submit, isLoading: contactLoading } = useContact();
+  const { stopLoading } = useGlobalLoading();
+
+  // Stop loading immediately since this page doesn't need API data to display
+  useEffect(() => {
+    stopLoading();
+  }, [stopLoading]);
 
   const {
     register: registerTop,
@@ -79,7 +85,9 @@ export default function ContactPage() {
             <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.consultation")}
             </h3>
-            <p className="text-white/70 text-sm md:text-base">+998(90)123-45-67</p>
+            <p className="text-white/70 text-sm md:text-base">
+              +998(90)123-45-67
+            </p>
           </div>
 
           <div className="text-center">
@@ -89,7 +97,9 @@ export default function ContactPage() {
             <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.online_consultation")}
             </h3>
-            <p className="text-white/70 text-sm md:text-base">+998(90)123-45-67</p>
+            <p className="text-white/70 text-sm md:text-base">
+              +998(90)123-45-67
+            </p>
           </div>
 
           <div className="text-center">
@@ -99,7 +109,9 @@ export default function ContactPage() {
             <h3 className="text-white font-semibold mb-1 md:mb-2 text-sm md:text-base">
               {t("contact.write_us")}
             </h3>
-            <p className="text-white/70 text-sm md:text-base break-all">@paxtamashkattaqo'rg'on</p>
+            <p className="text-white/70 text-sm md:text-base break-all">
+              @paxtamashkattaqo'rg'on
+            </p>
           </div>
         </div>
 
@@ -167,7 +179,8 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full bg-accent hover:bg-accent-dark text-primary font-bold py-4 md:py-5 rounded-full transition-all hover:shadow-lg text-sm md:text-base"
+              disabled={contactLoading}
+              className="w-full bg-accent hover:bg-accent-dark text-primary font-bold py-4 md:py-5 rounded-full transition-all hover:shadow-lg text-sm md:text-base disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {contactLoading ? (
                 <div className="flex items-center justify-center gap-2 text-gray-600">

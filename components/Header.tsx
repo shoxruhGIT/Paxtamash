@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language;
+  const { t } = useTranslation();
+  const { language: currentLang, changeLanguage } = useLanguage();
 
   const navigation = [
     { name: t("nav.home"), href: "/" },
@@ -60,7 +61,7 @@ export default function Header() {
                 <ChevronDown size={16} />
               </button>
               <div className="absolute right-0 mt-2 w-32 bg-primary-light rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <button onClick={() => i18n.changeLanguage("ru")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-t-lg flex items-center space-x-2">
+                <button onClick={() => changeLanguage("ru")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-t-lg flex items-center space-x-2">
                   <img
                     src="https://flagcdn.com/w40/ru.png"
                     alt="Russian"
@@ -68,7 +69,7 @@ export default function Header() {
                   />
                   <span>Русский</span>
                 </button>
-                <button onClick={() => i18n.changeLanguage("en")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
+                <button onClick={() => changeLanguage("en")} className="w-full px-4 py-2 text-left text-white hover:bg-primary hover:text-accent transition-colors rounded-b-lg flex items-center space-x-2">
                   <img
                     src="https://flagcdn.com/w40/gb.png"
                     alt="English"
@@ -105,14 +106,14 @@ export default function Header() {
             {/* Mobile Language Selector */}
             <div className="flex items-center gap-4 pt-4 border-t border-white/10 mt-4">
               <button
-                onClick={() => i18n.changeLanguage("en")}
+                onClick={() => changeLanguage("en")}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "en" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
               >
                 <img src="https://flagcdn.com/w40/gb.png" alt="English" className="w-6 h-4" />
                 <span>English</span>
               </button>
               <button
-                onClick={() => i18n.changeLanguage("ru")}
+                onClick={() => changeLanguage("ru")}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${currentLang === "ru" ? "bg-accent text-primary" : "text-white hover:bg-white/10"}`}
               >
                 <img src="https://flagcdn.com/w40/ru.png" alt="Russian" className="w-6 h-4" />

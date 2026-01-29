@@ -6,11 +6,19 @@ import { Check, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useStaffs } from "../features";
+import { useGlobalLoading } from "@/provider/LoadingProvider";
 
 export default function AboutPage() {
   const { t } = useTranslation();
-
   const { data: staffs, isLoading } = useStaffs();
+  const { stopLoading } = useGlobalLoading();
+
+  // Stop global loading when staffs data is loaded
+  useEffect(() => {
+    if (!isLoading && staffs) {
+      stopLoading();
+    }
+  }, [isLoading, staffs, stopLoading]);
 
   const timeline = [
     { year: 2017, active: true },
@@ -215,16 +223,21 @@ export default function AboutPage() {
                     activeYear === item.year ? "scale-110" : "opacity-50"
                   }`}
                 >
-                  <span className={`text-4xl font-bold ${activeYear === item.year ? "text-primary" : "text-gray-400"}`}>
+                  <span
+                    className={`text-4xl font-bold ${activeYear === item.year ? "text-primary" : "text-gray-400"}`}
+                  >
                     {item.year}
                   </span>
-                  <div className={`w-3 h-3 rounded-full ${activeYear === item.year ? "bg-primary" : "border border-gray-400"}`} />
+                  <div
+                    className={`w-3 h-3 rounded-full ${activeYear === item.year ? "bg-primary" : "border border-gray-400"}`}
+                  />
                 </button>
               ))}
             </div>
             {activeYear && (
               <p className="text-sm text-gray-600 mt-4 px-4">
-                "Jami 2 million$ lik investitsiya bilan bir qator ilmiy-tadqiqot va ishlanmalar hamkorliklari o'rnatildi."
+                "Jami 2 million$ lik investitsiya bilan bir qator ilmiy-tadqiqot
+                va ishlanmalar hamkorliklari o'rnatildi."
               </p>
             )}
           </div>
@@ -250,9 +263,15 @@ export default function AboutPage() {
                 {features.map((featureKey, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <div className="w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <img src="/tick_icon.png" alt="" className="w-full h-full" />
+                      <img
+                        src="/tick_icon.png"
+                        alt=""
+                        className="w-full h-full"
+                      />
                     </div>
-                    <span className="text-white text-base md:text-lg">{t(featureKey)}</span>
+                    <span className="text-white text-base md:text-lg">
+                      {t(featureKey)}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -294,13 +313,18 @@ export default function AboutPage() {
       {/* Globe Section */}
       <section className="py-12 md:py-20 bg-primary-dark">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 font-heading">{t("about.text-new")}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 font-heading">
+            {t("about.text-new")}
+          </h2>
 
           <div className="relative w-full max-w-md mx-auto h-72 md:h-96">
             {/* Globe illustration */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-60 h-60 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center">
-                <svg viewBox="0 0 200 200" className="w-48 h-48 md:w-64 md:h-64">
+                <svg
+                  viewBox="0 0 200 200"
+                  className="w-48 h-48 md:w-64 md:h-64"
+                >
                   {/* Simple map outline */}
                   <path
                     d="M60 80 L80 70 L100 75 L120 65 L140 75 L140 90 L130 95 L120 90 L110 95 L90 90 L80 95 L70 90 Z"
@@ -351,11 +375,6 @@ export default function AboutPage() {
             {t("about.team_title")}
           </h2>
 
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-10 w-10 animate-spin text-primary" />
-            </div>
-          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {staffs?.results?.map((member, index) => (
               <div
@@ -398,7 +417,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          )}
         </div>
       </section>
     </div>

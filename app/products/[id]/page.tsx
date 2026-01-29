@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -8,26 +8,27 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import { useTranslation } from "react-i18next";
 import { useProductDetail } from "@/app/features";
+import { useGlobalLoading } from "@/provider/LoadingProvider";
 
 export default function ProductDetailPage() {
   const params = useParams<{ id: string }>();
   const { t } = useTranslation();
   const [currentImage, setCurrentImage] = useState(0);
+  const { stopLoading } = useGlobalLoading();
 
   const { data, isLoading } = useProductDetail(
-    params.id ? Number(params.id) : null
+    params.id ? Number(params.id) : null,
   );
+
+  // Stop global loading when product detail is loaded
+  useEffect(() => {
+    if (!isLoading && data) {
+      stopLoading();
+    }
+  }, [isLoading, data, stopLoading]);
 
   const images = data?.images ?? [];
   const similarProducts = data?.similar_products ?? [];
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-primary">
-        <Loader2 className="h-10 w-10 animate-spin text-white" />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pt-20 md:pt-24 pb-12">
@@ -66,16 +67,16 @@ export default function ProductDetailPage() {
             {images.length > 1 && (
               <>
                 <button
-                  onClick={() =>
-                    setCurrentImage(Math.max(0, currentImage - 1))
-                  }
+                  onClick={() => setCurrentImage(Math.max(0, currentImage - 1))}
                   className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
                   <ChevronLeft className="text-white w-5 h-5 md:w-6 md:h-6" />
                 </button>
                 <button
                   onClick={() =>
-                    setCurrentImage(Math.min(images.length - 1, currentImage + 1))
+                    setCurrentImage(
+                      Math.min(images.length - 1, currentImage + 1),
+                    )
                   }
                   className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
                 >
@@ -93,7 +94,9 @@ export default function ProductDetailPage() {
                   key={index}
                   onClick={() => setCurrentImage(index)}
                   className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                    currentImage === index ? "bg-accent w-6 md:w-8" : "bg-white/30"
+                    currentImage === index
+                      ? "bg-accent w-6 md:w-8"
+                      : "bg-white/30"
                   }`}
                 />
               ))}

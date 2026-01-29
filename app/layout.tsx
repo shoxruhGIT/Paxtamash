@@ -1,10 +1,10 @@
-// app/layout.tsx
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import I18nProvider from "./I18nProvider";
 import { Inter, Manrope, Space_Grotesk, Quicksand } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { LoadingProvider } from "@/provider/LoadingProvider";
 
 export const metadata = {
   title: "Kattaqo'rg'on Paxtamash - Textile Machinery",
@@ -44,11 +44,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={`${manrope.variable} ${inter.variable} ${spaceGrotesk.variable} ${quicksand.variable} font-paragraph`}>
+      <body
+        className={`${manrope.variable} ${inter.variable} ${spaceGrotesk.variable} ${quicksand.variable} font-paragraph`}
+      >
         <I18nProvider>
-          <Header />
-          {children}
-          <Footer />
+          <LoadingProvider>
+            <Header />
+            {children}
+            <Footer />
+          </LoadingProvider>
         </I18nProvider>
         <Toaster />
       </body>

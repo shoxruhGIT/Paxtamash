@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowRight,
   Phone,
@@ -14,12 +14,13 @@ import WaveDecoration from "@/components/WaveDecoration";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useContact, useHomeData, usePartners } from "./features";
+import { useBanner, useContact, useHomeData, usePartners } from "./features";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { contactFormSchema, contactFormSchemaBottom } from "@/lib/validation";
+import { useGlobalLoading } from "@/provider/LoadingProvider";
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 type ContactFormDataBottom = z.infer<typeof contactFormSchemaBottom>;
@@ -28,7 +29,30 @@ export default function Home() {
   const { t } = useTranslation();
   const { data: homeData, isLoading } = useHomeData();
   const { data: contact, submit, isLoading: contactLoading } = useContact();
-  const { data: partners } = usePartners();
+  const { data: partners, isLoading: partnersLoading } = usePartners();
+  const { data: banners, isLoading: bannersLoading } = useBanner();
+  const { stopLoading } = useGlobalLoading();
+
+  // Stop global loading when all critical data is loaded
+  useEffect(() => {
+    const allCriticalDataLoaded =
+      !isLoading &&
+      !partnersLoading &&
+      !bannersLoading &&
+      (homeData || banners || partners); // At least some data exists
+
+    if (allCriticalDataLoaded) {
+      stopLoading();
+    }
+  }, [
+    isLoading,
+    partnersLoading,
+    bannersLoading,
+    homeData,
+    banners,
+    partners,
+    stopLoading,
+  ]);
 
   // Top contact form
   const {
@@ -72,12 +96,13 @@ export default function Home() {
 
   return (
     <div className="relative overflow-x-hidden">
+      {/* Hero Section with Banner */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center bg-primary overflow-hidden">
         <div className="container max-w-[1295px] mx-auto px-6 lg:px-8 py-12 md:py-16 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="text-white space-y-6 md:space-y-8">
               <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up font-heading">
-                {t("home.hero_subtitle")}
+                {banners?.length > 0 && banners[0]?.title}
               </h1>
 
               <div className="pt-4">
@@ -99,8 +124,8 @@ export default function Home() {
             </div>
 
             <img
-              src="/image-Photoroom (4)_upscayl_5x_realesrgan-x4plus 1.png"
-              alt="Textile machinery equipment"
+              src={banners?.length > 0 && banners[0]?.image}
+              alt={banners?.length > 0 && banners[0]?.title}
               className="hidden md:block absolute -right-28 top-0 lg:-top-48 w-1/2 lg:w-auto max-w-[600px] lg:max-w-none"
             />
           </div>
@@ -126,7 +151,7 @@ export default function Home() {
 
       {/* Contact Form Section - TOP */}
       <section className="hidden md:flex py-12 bg-primary">
-        <div className="container mx-auto px-6">
+        <div className="container max-w-[1295px] mx-auto px-6">
           <form onSubmit={handleSubmitTop(onSubmitTop)}>
             <div className="bg-white backdrop-blur-sm rounded-[8px] p-6 max-w-[1113px] mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-4 md:gap-6 items-end lg:items-center font-inter">
@@ -201,10 +226,11 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="btn-primary w-[153px] sm:col-span-2 lg:col-span-1 lg:w-auto whitespace-nowrap rounded-full bg-primary text-white hover:bg-primary/90 transition-colors text-sm md:text-base"
+                  disabled={contactLoading}
+                  className="btn-primary w-[153px] sm:col-span-2 lg:col-span-1 lg:w-auto whitespace-nowrap rounded-full bg-primary text-white hover:bg-primary/90 transition-colors text-sm md:text-base disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {contactLoading ? (
-                    <div className="flex items-center justify-center gap-2 text-gray-600">
+                    <div className="flex items-center justify-center gap-2">
                       <Loader2 className="h-5 w-5 animate-spin" />
                     </div>
                   ) : (
@@ -222,7 +248,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30">
           <div className="w-full h-full"></div>
         </div>
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container max-w-[1295px] mx-auto px-6 relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">
             {t("home.akkum")}
           </h2>
@@ -237,7 +263,10 @@ export default function Home() {
             tellus ut, condimentum orci. Praesent mattis varius pharetra. Nulla
             ante diam, sodales vitae purus sit amet, eleifend sagittis magna.
           </p>
-          <Link href={'/about'} className="text-accent hover:text-accent-dark transition-colors flex items-center gap-2 font-semibold">
+          <Link
+            href={"/about"}
+            className="text-accent hover:text-accent-dark transition-colors flex items-center gap-2 font-semibold"
+          >
             {t("home.about")} <ArrowRight size={20} />
           </Link>
         </div>
@@ -272,7 +301,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="container max-w-[1295px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="space-y-6">
@@ -317,25 +346,19 @@ export default function Home() {
 
       {/* Products Section */}
       <section className="py-20 bg-primary">
-        <div className="container mx-auto px-6">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-10 w-10 animate-spin text-white" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {homeData?.product?.slice(0, 4).map((product, idx) => (
-                <ProductCard
-                  key={product.id}
-                  id={String(product?.id)}
-                  name={product?.title || ""}
-                  description={product?.short_description || ""}
-                  imageColor={product?.image || ""}
-                  index={idx}
-                />
-              ))}
-            </div>
-          )}
+        <div className="container max-w-[1295px] mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {homeData?.product?.slice(0, 4).map((product, idx) => (
+              <ProductCard
+                key={product.id}
+                id={String(product?.id)}
+                name={product?.title || ""}
+                description={product?.short_description || ""}
+                imageColor={product?.image || ""}
+                index={idx}
+              />
+            ))}
+          </div>
           <div className="text-center mt-8">
             <Link
               href="/products"
@@ -350,7 +373,7 @@ export default function Home() {
 
       {/* Map and Contact Form - BOTTOM */}
       <section className="py-20 bg-primary">
-        <div className="container mx-auto px-6">
+        <div className="container max-w-[1295px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Map */}
             <div className="rounded-3xl overflow-hidden h-96 bg-primary-light">
@@ -431,10 +454,11 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="btn-accent w-full justify-center"
+                  disabled={contactLoading}
+                  className="btn-accent w-full justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {contactLoading ? (
-                    <div className="flex items-center justify-center gap-2 text-gray-600">
+                    <div className="flex items-center justify-center gap-2">
                       <Loader2 className="h-5 w-5 animate-spin" />
                     </div>
                   ) : (

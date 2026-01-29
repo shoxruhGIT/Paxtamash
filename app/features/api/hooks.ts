@@ -82,3 +82,16 @@ export const usePartners = () => {
     mutate,
   };
 };
+
+export const useBanner = () => {
+  const { data, error, isLoading, mutate } = useSWR(
+    "banner",
+    rootRequests.banner,
+  );
+  return {
+    data,
+    error,
+    isLoading,
+    mutate,
+  };
+};

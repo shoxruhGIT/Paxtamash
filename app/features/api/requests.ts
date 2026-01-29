@@ -39,4 +39,8 @@ export const rootRequests = {
     const response = await apiClient.get(endpoints.root.partners);
     return PartnersResponseSchema.parse(response.data);
   },
+  banner: async () => {
+    const response = await apiClient.get(endpoints.root.banner);
+    return response.data;
+  },
 };
