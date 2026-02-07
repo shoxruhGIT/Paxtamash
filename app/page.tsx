@@ -19,11 +19,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import { contactFormSchema, contactFormSchemaBottom } from "@/lib/validation";
+import {
+  createContactFormSchema,
+  createContactFormSchemaBottom,
+} from "@/lib/validation";
 import { useGlobalLoading } from "@/provider/LoadingProvider";
 
-type ContactFormData = z.infer<typeof contactFormSchema>;
-type ContactFormDataBottom = z.infer<typeof contactFormSchemaBottom>;
+type ContactFormData = z.infer<ReturnType<typeof createContactFormSchema>>;
+type ContactFormDataBottom = z.infer<
+  ReturnType<typeof createContactFormSchemaBottom>
+>;
 
 export default function Home() {
   const { t } = useTranslation();
@@ -61,7 +66,7 @@ export default function Home() {
     formState: { errors: errorsTop },
     reset: resetTop,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(createContactFormSchema(t)),
   });
 
   // Bottom contact form
@@ -71,7 +76,7 @@ export default function Home() {
     formState: { errors: errorsBottom },
     reset: resetBottom,
   } = useForm<ContactFormDataBottom>({
-    resolver: zodResolver(contactFormSchemaBottom),
+    resolver: zodResolver(createContactFormSchemaBottom(t)),
   });
 
   const onSubmitTop = async (data: ContactFormData) => {
@@ -427,7 +432,7 @@ export default function Home() {
                 <div>
                   <input
                     type="email"
-                    placeholder="E-mail"
+                    placeholder={t("home.your_email")}
                     className="input-field"
                     {...registerBottom("email")}
                   />

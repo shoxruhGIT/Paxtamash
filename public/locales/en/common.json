@@ -9,7 +9,7 @@
     "hero_subtitle": "High quality is the key to your business success.",
     "btn": "Products",
     "hero": "Kattakurgan Cotton Mill",
-    "akkum": "Current battery production technologies are unstable.",
+    "akkum": "Advanced cotton processing and textile manufacturing solutions.",
     "about": "Learn More",
     "sale": "Get 10% discount!",
     "sale_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
@@ -51,7 +51,7 @@
   "products": {
     "title": "Products",
     "hero_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
-    "features_title": "Current battery production technologies are unstable.",
+    "features_title": "Advanced cotton processing and textile manufacturing technologies.",
     "back": "Back",
     "specifications": "Specifications:",
     "description": "Description:",
@@ -66,6 +66,7 @@
     "write_us": "Write to Us",
     "your_name": "Your Name",
     "your_phone": "Your Phone Number",
+    "phone_number": "Your Phone Number",
     "your_email": "Your E-mail",
     "write_message": "Write a message",
     "submit": "Submit"
@@ -83,5 +84,12 @@
   "toast": {
     "success": "Your request has been sent successfully!",
     "error": "An error occurred. Please try again later."
+  },
+  "validation": {
+    "name_min": "Name must be at least 2 characters",
+    "phone_min": "Phone number must be at least 9 characters",
+    "phone_format": "Only numbers and symbols + ( ) - are allowed",
+    "email_invalid": "Invalid email address",
+    "message_min": "Message must be at least 10 characters"
   }
 }

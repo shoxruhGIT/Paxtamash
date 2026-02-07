@@ -1,7 +1,11 @@
 type Language = "en" | "ru";
 type Listener = (lang: Language) => void;
 
-let currentLanguage: Language = "en";
+// Read persisted language (SSR-safe), default to "ru"
+let currentLanguage: Language =
+  typeof window !== "undefined"
+    ? (localStorage.getItem("language") as Language) || "ru"
+    : "ru";
 const listeners: Set<Listener> = new Set();
 
 /**
@@ -21,6 +25,9 @@ export function setLanguage(lang: string): void {
   const normalized = normalizeLanguage(lang);
   if (normalized !== currentLanguage) {
     currentLanguage = normalized;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", currentLanguage);
+    }
     listeners.forEach((listener) => listener(currentLanguage));
   }
 }

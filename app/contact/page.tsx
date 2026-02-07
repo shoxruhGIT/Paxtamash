@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { Phone, Globe, Send, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { contactFormSchema, contactFormSchemaBottom } from "@/lib/validation";
+import {
+  createContactFormSchema,
+  createContactFormSchemaBottom,
+} from "@/lib/validation";
 import z from "zod";
 import { useContact } from "../features";
 import { useForm } from "react-hook-form";
@@ -11,8 +14,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useGlobalLoading } from "@/provider/LoadingProvider";
 
-type ContactFormData = z.infer<typeof contactFormSchema>;
-type ContactFormDataBottom = z.infer<typeof contactFormSchemaBottom>;
+type ContactFormData = z.infer<ReturnType<typeof createContactFormSchema>>;
+type ContactFormDataBottom = z.infer<
+  ReturnType<typeof createContactFormSchemaBottom>
+>;
 
 export default function ContactPage() {
   const { t } = useTranslation();
@@ -30,7 +35,7 @@ export default function ContactPage() {
     formState: { errors: errorsTop },
     reset: resetTop,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(createContactFormSchema(t)),
   });
 
   const {
@@ -39,7 +44,7 @@ export default function ContactPage() {
     formState: { errors: errorsBottom },
     reset: resetBottom,
   } = useForm<ContactFormDataBottom>({
-    resolver: zodResolver(contactFormSchemaBottom),
+    resolver: zodResolver(createContactFormSchemaBottom(t)),
   });
 
   const [formData, setFormData] = useState({
@@ -124,7 +129,7 @@ export default function ContactPage() {
             <div>
               <input
                 type="text"
-                placeholder={t("home.name")}
+                placeholder={t("contact.your_name")}
                 className="w-full bg-transparent border-2 border-white/20 rounded-full px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
                 {...registerBottom("full_name")}
               />
@@ -138,7 +143,7 @@ export default function ContactPage() {
             <div>
               <input
                 type="tel"
-                placeholder={t("contact.your_phone")}
+                placeholder={t("contact.phone_number")}
                 className="w-full bg-transparent border-2 border-white/20 rounded-full px-4 md:px-6 py-3 md:py-4 text-white text-sm md:text-base placeholder:text-white/50 focus:border-accent focus:outline-none transition-colors"
                 {...registerBottom("phone")}
               />

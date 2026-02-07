@@ -7,9 +7,9 @@
   },
   "home": {
     "hero_subtitle": "Высокое качество — залог успеха вашего бизнеса.",
-    "btn": "Продукты",
+    "btn": "Продукция",
     "hero": "Хлопчатобумажная фабрика Каттакурган",
-    "akkum": "Современные технологии производства аккумуляторов нестабильны.",
+    "akkum": "Передовые решения по переработке хлопка и текстильному производству.",
     "about": "Подробнее",
     "sale": "Получите скидку 10%!",
     "sale_desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
@@ -23,7 +23,7 @@
     "your_name": "Ваше имя",
     "how_to_call": "Как вас зовут?",
     "your_number": "Ваш номер",
-    "your_phone": "Ваш телефон номер",
+    "your_phone": "Введите номер телефона",
     "your_email": "Ваш E-mail",
     "email_placeholder": "Ваш адрес эл.почты",
     "get_consultation": "Получить консультацию"
@@ -51,7 +51,7 @@
   "products": {
     "title": "Продукция",
     "hero_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere tellus ut tristique malesuada.",
-    "features_title": "Современные технологии производства аккумуляторов нестабильны.",
+    "features_title": "Передовые технологии переработки хлопка и текстильного производства.",
     "back": "Назад",
     "specifications": "Характеристики:",
     "description": "Описание:",
@@ -62,13 +62,14 @@
   "contact": {
     "title": "Хотите узнать больше о нашей продукции?",
     "consultation": "Записаться на консультацию",
-    "online_consultation": "Онлайн консультация",
+    "online_consultation": "Онлайн-консультация",
     "write_us": "Напишите нам",
     "your_name": "Ваше имя",
     "your_phone": "Ваш номер телефона",
     "your_email": "Ваш E-mail",
     "write_message": "Напишите сообщение",
-    "submit": "Отправить"
+    "submit": "Отправить",
+    "phone_number": "Ваш номер телефона"
   },
   "footer": {
     "rights": "© 2025 «Каттакурган Пахтамаш». Все права защищены.",
@@ -83,5 +84,12 @@
   "toast": {
     "success": "Заявка успешно отправлена!",
     "error": "Ошибка при отправке. Попробуйте позже."
+  },
+  "validation": {
+    "name_min": "Имя должно содержать минимум 2 символа",
+    "phone_min": "Номер телефона должен содержать минимум 9 символов",
+    "phone_format": "Допускаются только цифры и символы + ( ) -",
+    "email_invalid": "Некорректный адрес электронной почты",
+    "message_min": "Сообщение должно содержать минимум 10 символов"
   }
 }
