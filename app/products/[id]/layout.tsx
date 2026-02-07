@@ -12,7 +12,7 @@ import {
 
 type LayoutProps = {
   children: React.ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 async function getProduct(id: string) {
@@ -30,16 +30,17 @@ async function getProduct(id: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
   const productName = product?.title ? String(product.title) : null;
   const title = productName ? `${productName} | ${SITE_NAME}` : DEFAULT_TITLE;
   const description = toDescription(
     product?.short_description || product?.description,
     DEFAULT_DESCRIPTION,
   );
-  const url = `${SITE_URL}/products/${params.id}`;
+  const url = `${SITE_URL}/products/${id}`;
   const imageCandidate =
     product?.image ||
     product?.images?.[0]?.image ||
@@ -62,7 +63,7 @@ export async function generateMetadata({
       canonical: url,
     },
     openGraph: {
-      type: "product",
+      type: "website",
       url,
       title,
       description,
