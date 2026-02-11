@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
   Phone,
@@ -75,9 +75,11 @@ export default function Home() {
     handleSubmit: handleSubmitBottom,
     formState: { errors: errorsBottom },
     reset: resetBottom,
+    setFocus,
   } = useForm<ContactFormDataBottom>({
     resolver: zodResolver(createContactFormSchemaBottom(t)),
   });
+  const bottomFormSectionRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmitTop = async (data: ContactFormData) => {
     try {
@@ -97,6 +99,14 @@ export default function Home() {
     } catch (error) {
       toast.error(t("toast.error"));
     }
+  };
+
+  const handleBuyClick = () => {
+    bottomFormSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    setTimeout(() => setFocus("full_name"), 350);
   };
 
   return (
@@ -321,7 +331,11 @@ export default function Home() {
                   <Phone size={20} className="md:w-[22px] md:h-[22px]" />
                   +998(90)1234567
                 </button>
-                <button className="bg-gray-900 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-800 transition-all text-sm md:text-lg">
+                <button
+                  type="button"
+                  onClick={handleBuyClick}
+                  className="bg-gray-900 text-white px-6 md:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-800 transition-all text-sm md:text-lg"
+                >
                   {t("home.buy")}
                 </button>
               </div>
@@ -377,7 +391,7 @@ export default function Home() {
       </section>
 
       {/* Map and Contact Form - BOTTOM */}
-      <section className="py-20 bg-primary">
+      <section ref={bottomFormSectionRef} className="py-20 bg-primary">
         <div className="container max-w-[1295px] mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Map */}
