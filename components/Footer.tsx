@@ -94,7 +94,7 @@ export default function Footer() {
               {t("footer.contacts")}
             </h4>
             <ul className="space-y-1.5 md:space-y-2 text-white/70 text-sm md:text-base">
-              <li>+998(90)123-45-67</li>
+              <li>+998 (94) 777 52 52</li>
               <li className="break-all">@paxtamashkattaqo'rg'on</li>
               <li>info@paxtamash.uz</li>
             </ul>

@@ -91,7 +91,7 @@ export default function ContactPage() {
               {t("contact.consultation")}
             </h3>
             <p className="text-white/70 text-sm md:text-base">
-              +998(90)123-45-67
+              +998 (94) 777 52 52
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export default function ContactPage() {
               {t("contact.online_consultation")}
             </h3>
             <p className="text-white/70 text-sm md:text-base">
-              +998(90)123-45-67
+              +998 (94) 777 52 52
             </p>
           </div>
 

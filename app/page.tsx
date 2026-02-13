@@ -329,7 +329,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
                 <button className="bg-white border-2 border-gray-900 text-gray-900 px-4 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-gray-50 transition-all flex items-center gap-2 md:gap-3 text-sm md:text-lg">
                   <Phone size={20} className="md:w-[22px] md:h-[22px]" />
-                  +998(90)1234567
+                  +998 (94) 777 52 52
                 </button>
                 <button
                   type="button"
@@ -397,11 +397,9 @@ export default function Home() {
             {/* Map */}
             <div className="rounded-3xl overflow-hidden h-96 bg-primary-light">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2412648750455!2d-73.98784668459395!3d40.74844097932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2s!4v1619524992238!5m2!1sen!2s"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
+                src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6122.637161925223!2d66.25965!3d39.889499!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDUzJzIyLjIiTiA2NsKwMTUnMzQuNyJF!5e0!3m2!1sen!2s!4v1770995547948!5m2!1sen!2s"
+                width="600"
+                height="450"
                 loading="lazy"
               ></iframe>
             </div>
